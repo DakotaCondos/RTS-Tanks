@@ -8,7 +8,7 @@ public class UnitSelectionHandler : MonoBehaviour
 {
     [SerializeField] LayerMask layerMask = new();
     private Camera mainCamera;
-    private List<Unit> selectedUnits = new();
+    public List<Unit> SelectedUnits { get; } = new();
     private void Start()
     {
         mainCamera = Camera.main;
@@ -18,11 +18,11 @@ public class UnitSelectionHandler : MonoBehaviour
     {
         if (Mouse.current.leftButton.wasPressedThisFrame)
         {
-            foreach (Unit item in selectedUnits)
+            foreach (Unit item in SelectedUnits)
             {
                 item.Deselect();
             }
-            selectedUnits.Clear();
+            SelectedUnits.Clear();
         }
         else if (Mouse.current.leftButton.wasReleasedThisFrame)
         {
@@ -36,9 +36,9 @@ public class UnitSelectionHandler : MonoBehaviour
         if (!Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, layerMask)) { return; }
         if (!hit.collider.TryGetComponent<Unit>(out Unit unit)) { return; }
         if (!unit.isOwned) { return; }
-        selectedUnits.Add(unit);
+        SelectedUnits.Add(unit);
 
-        foreach (Unit item in selectedUnits)
+        foreach (Unit item in SelectedUnits)
         {
             item.Select();
         }
