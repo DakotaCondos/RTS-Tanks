@@ -11,6 +11,14 @@ public class UnitMovement : NetworkBehaviour
     private Camera mainCamera;
 
     #region Server
+    [ServerCallback]
+    private void Update()
+    {
+        if (!navMeshAgent.hasPath) { return; }
+        if (navMeshAgent.remainingDistance > navMeshAgent.stoppingDistance) { return; }
+        navMeshAgent.ResetPath();
+    }
+
     [Command]
     public void CmdMove(Vector3 position)
     {

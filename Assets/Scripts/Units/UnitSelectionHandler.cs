@@ -45,11 +45,14 @@ public class UnitSelectionHandler : MonoBehaviour
 
     private void StartSelectionArea()
     {
-        foreach (Unit item in SelectedUnits)
+        if (!Keyboard.current.leftShiftKey.isPressed)
         {
-            item.Deselect();
+            foreach (Unit item in SelectedUnits)
+            {
+                item.Deselect();
+            }
+            SelectedUnits.Clear();
         }
-        SelectedUnits.Clear();
 
         SelectedAreaBox.gameObject.SetActive(true);
         startPosition = Mouse.current.position.ReadValue();
@@ -92,6 +95,8 @@ public class UnitSelectionHandler : MonoBehaviour
 
         foreach (Unit item in rtsPlayer.PlayersUnits)
         {
+            if (SelectedUnits.Contains(item)) { continue; }
+
             Vector3 screenPosition = mainCamera.WorldToScreenPoint(item.transform.position);
 
             if (screenPosition.x > min.x && screenPosition.y > min.y && screenPosition.x < max.x && screenPosition.y < max.y)
