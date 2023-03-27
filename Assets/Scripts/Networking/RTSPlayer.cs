@@ -10,16 +10,16 @@ public class RTSPlayer : NetworkBehaviour
 
     public override void OnStartServer()
     {
-        Unit.ServerUnitSpawned += ServerHandleUnitSpawned;
-        Unit.ServerUnitDespawned += ServerHandleUnitDespawned;
+        Unit.ServerOnUnitSpawned += ServerHandleUnitSpawned;
+        Unit.ServerOnUnitDespawned += ServerHandleUnitDespawned;
     }
 
     #region server
 
     public override void OnStopServer()
     {
-        Unit.ServerUnitSpawned -= ServerHandleUnitSpawned;
-        Unit.ServerUnitDespawned -= ServerHandleUnitDespawned;
+        Unit.ServerOnUnitSpawned -= ServerHandleUnitSpawned;
+        Unit.ServerOnUnitDespawned -= ServerHandleUnitDespawned;
     }
     private void ServerHandleUnitSpawned(Unit unit)
     {
@@ -34,34 +34,37 @@ public class RTSPlayer : NetworkBehaviour
     }
     #endregion
 
+
+
+
+
     #region client
 
     public override void OnStartClient()
     {
         if (!isClientOnly) { return; }
-        Unit.AuthorityUnitSpawned += AuthorityHandleUnitSpawned;
-        Unit.AuthorityUnitSpawned += AuthorityHandleUnitDespawned;
+        Unit.AuthorityOnUnitSpawned += AuthorityHandleUnitSpawned;
+        Unit.AuthorityOnUnitSpawned += AuthorityHandleUnitDespawned;
     }
     public override void OnStopClient()
     {
         if (!isClientOnly) { return; }
-        Unit.AuthorityUnitDespawned -= AuthorityHandleUnitSpawned;
-        Unit.AuthorityUnitDespawned -= AuthorityHandleUnitDespawned;
+        Unit.AuthorityOnUnitDespawned -= AuthorityHandleUnitSpawned;
+        Unit.AuthorityOnUnitDespawned -= AuthorityHandleUnitDespawned;
 
+    }
+    private void AuthorityHandleUnitSpawned(Unit unit)
+    {
+        if (!isOwned) { return; }
+        playersUnits.Add(unit);
     }
 
     private void AuthorityHandleUnitDespawned(Unit unit)
     {
         if (!isOwned) { return; }
-        playersUnits.Add(unit);
-
-    }
-
-    private void AuthorityHandleUnitSpawned(Unit unit)
-    {
         playersUnits.Remove(unit);
-
     }
+
 
 
 

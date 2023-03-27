@@ -10,23 +10,25 @@ public class Unit : NetworkBehaviour
     [SerializeField] UnityEvent onSelect;
     [SerializeField] UnityEvent onDeselect;
     [SerializeField] UnitMovement unitMovement;
+    [SerializeField] SpriteRenderer selectedSprite;
+
     public UnitMovement UnitMovement { get => unitMovement; }
 
-    public static event Action<Unit> ServerUnitSpawned;
-    public static event Action<Unit> ServerUnitDespawned;
+    public static event Action<Unit> ServerOnUnitSpawned;
+    public static event Action<Unit> ServerOnUnitDespawned;
 
-    public static event Action<Unit> AuthorityUnitSpawned;
-    public static event Action<Unit> AuthorityUnitDespawned;
+    public static event Action<Unit> AuthorityOnUnitSpawned;
+    public static event Action<Unit> AuthorityOnUnitDespawned;
 
     #region server
     public override void OnStartServer()
     {
-        ServerUnitSpawned?.Invoke(this);
+        ServerOnUnitSpawned?.Invoke(this);
     }
 
     public override void OnStopServer()
     {
-        ServerUnitDespawned?.Invoke(this);
+        ServerOnUnitDespawned?.Invoke(this);
     }
 
     #endregion
@@ -37,13 +39,13 @@ public class Unit : NetworkBehaviour
     public override void OnStartClient()
     {
         if (!isClientOnly || !isOwned) { return; }
-        AuthorityUnitSpawned?.Invoke(this);
+        AuthorityOnUnitSpawned?.Invoke(this);
     }
 
     public override void OnStopClient()
     {
         if (!isClientOnly || !isOwned) { return; }
-        AuthorityUnitDespawned?.Invoke(this);
+        AuthorityOnUnitDespawned?.Invoke(this);
     }
 
 
@@ -53,6 +55,8 @@ public class Unit : NetworkBehaviour
     {
         if (!isOwned) return;
         onSelect?.Invoke();
+        //show selected sprite
+        selectedSprite.color = Color.green;
     }
 
     [Client]
@@ -60,6 +64,8 @@ public class Unit : NetworkBehaviour
     {
         if (!isOwned) return;
         onDeselect?.Invoke();
+        //hide selected sprite
+        selectedSprite.color = Color.clear;
     }
     #endregion
 }
