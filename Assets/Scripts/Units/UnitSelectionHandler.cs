@@ -1,3 +1,4 @@
+using Mirror;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -7,8 +8,12 @@ using UnityEngine.InputSystem;
 public class UnitSelectionHandler : MonoBehaviour
 {
     [SerializeField] LayerMask layerMask = new();
+    [SerializeField] RectTransform SelectedAreaBox;
     private Camera mainCamera;
     public List<Unit> SelectedUnits { get; } = new();
+    private RTSPlayer rtsPlayer;
+    private Vector2 startPosition;
+
     private void Start()
     {
         mainCamera = Camera.main;
@@ -16,31 +21,86 @@ public class UnitSelectionHandler : MonoBehaviour
 
     private void Update()
     {
+        ActiveRTSPlayer();
+
         if (Mouse.current.leftButton.wasPressedThisFrame)
         {
-            foreach (Unit item in SelectedUnits)
-            {
-                item.Deselect();
-            }
-            SelectedUnits.Clear();
+            StartSelectionArea();
         }
         else if (Mouse.current.leftButton.wasReleasedThisFrame)
         {
             ClearSelectionArea();
         }
+        else if (Mouse.current.leftButton.isPressed)
+        {
+            UpdateSelectionArea();
+        }
+    }
+
+    private void ActiveRTSPlayer()
+    {
+        if (rtsPlayer != null) { return; }
+        rtsPlayer = NetworkClient.connection.identity.GetComponent<RTSPlayer>();
+    }
+
+    private void StartSelectionArea()
+    {
+        foreach (Unit item in SelectedUnits)
+        {
+            item.Deselect();
+        }
+        SelectedUnits.Clear();
+
+        SelectedAreaBox.gameObject.SetActive(true);
+        startPosition = Mouse.current.position.ReadValue();
+        UpdateSelectionArea();
+    }
+
+    private void UpdateSelectionArea()
+    {
+        Vector2 mousePosition = Mouse.current.position.ReadValue();
+
+        float areaWidth = mousePosition.x - startPosition.x;
+        float areaHeight = mousePosition.y - startPosition.y;
+
+        SelectedAreaBox.sizeDelta = new Vector2(Mathf.Abs(areaWidth), Mathf.Abs(areaHeight));
+        SelectedAreaBox.anchoredPosition = startPosition + new Vector2(areaWidth / 2, areaHeight / 2);
     }
 
     private void ClearSelectionArea()
     {
-        Ray ray = mainCamera.ScreenPointToRay(Mouse.current.position.ReadValue());
-        if (!Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, layerMask)) { return; }
-        if (!hit.collider.TryGetComponent<Unit>(out Unit unit)) { return; }
-        if (!unit.isOwned) { return; }
-        SelectedUnits.Add(unit);
+        SelectedAreaBox.gameObject.SetActive(false);
 
-        foreach (Unit item in SelectedUnits)
+        if (SelectedAreaBox.sizeDelta.magnitude == 0)
         {
-            item.Select();
+            Ray ray = mainCamera.ScreenPointToRay(Mouse.current.position.ReadValue());
+            if (!Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, layerMask)) { return; }
+            if (!hit.collider.TryGetComponent<Unit>(out Unit unit)) { return; }
+            if (!unit.isOwned) { return; }
+            SelectedUnits.Add(unit);
+
+            foreach (Unit item in SelectedUnits)
+            {
+                item.Select();
+            }
+
+            return;
         }
+
+        Vector2 min = SelectedAreaBox.anchoredPosition - (SelectedAreaBox.sizeDelta / 2);
+        Vector2 max = SelectedAreaBox.anchoredPosition + (SelectedAreaBox.sizeDelta / 2);
+
+        foreach (Unit item in rtsPlayer.PlayersUnits)
+        {
+            Vector3 screenPosition = mainCamera.WorldToScreenPoint(item.transform.position);
+
+            if (screenPosition.x > min.x && screenPosition.y > min.y && screenPosition.x < max.x && screenPosition.y < max.y)
+            {
+                SelectedUnits.Add(item);
+                item.Select();
+            }
+
+        }
+
     }
 }

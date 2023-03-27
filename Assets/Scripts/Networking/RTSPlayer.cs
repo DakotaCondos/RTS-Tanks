@@ -8,6 +8,8 @@ public class RTSPlayer : NetworkBehaviour
 {
     [SerializeField] List<Unit> playersUnits = new();
 
+    public List<Unit> PlayersUnits { get => playersUnits; }
+
     public override void OnStartServer()
     {
         Unit.ServerOnUnitSpawned += ServerHandleUnitSpawned;
