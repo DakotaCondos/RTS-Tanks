@@ -3,6 +3,8 @@ using System;
 using UnityEngine;
 using UnityEngine.Events;
 
+[RequireComponent(typeof(UnitMovement), typeof(Targeting), typeof(Targetable))]
+[RequireComponent(typeof(Health))]
 public class Unit : NetworkBehaviour
 {
     [SerializeField] UnityEvent onSelect;
@@ -11,6 +13,7 @@ public class Unit : NetworkBehaviour
     [SerializeField] SpriteRenderer selectedSprite;
     [SerializeField] Targeting targeting;
     [SerializeField] Targetable targetable;
+    [SerializeField] Health health;
 
     public UnitMovement UnitMovement { get => unitMovement; }
     public Targeting Targeting { get => targeting; }
@@ -25,12 +28,21 @@ public class Unit : NetworkBehaviour
     #region server
     public override void OnStartServer()
     {
+        health.ServerOnDie += ServerHandleDie;
         ServerOnUnitSpawned?.Invoke(this);
     }
 
+
     public override void OnStopServer()
     {
+        health.ServerOnDie -= ServerHandleDie;
         ServerOnUnitDespawned?.Invoke(this);
+    }
+
+    [Server]
+    private void ServerHandleDie()
+    {
+        NetworkServer.Destroy(gameObject);
     }
 
     #endregion
@@ -38,15 +50,14 @@ public class Unit : NetworkBehaviour
 
     #region client
 
-    public override void OnStartClient()
+    public override void OnStartAuthority()
     {
-        if (!isClientOnly || !isOwned) { return; }
         AuthorityOnUnitSpawned?.Invoke(this);
     }
 
     public override void OnStopClient()
     {
-        if (!isClientOnly || !isOwned) { return; }
+        if (!isOwned) { return; }
         AuthorityOnUnitDespawned?.Invoke(this);
     }
 

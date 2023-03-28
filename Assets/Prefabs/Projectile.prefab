@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 3040010817085306726}
   - component: {fileID: 3040010817085306745}
   - component: {fileID: 3040010817085306744}
+  - component: {fileID: 3376513600359146294}
   - component: {fileID: 3871259552626495467}
   - component: {fileID: 7197325070509579993}
   - component: {fileID: 6324949765712608688}
@@ -848,6 +849,35 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 0}
+--- !u!114 &3376513600359146294
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3040010817085306747}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ff3ba0becae47b8b9381191598957c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
+  target: {fileID: 3040010817085306725}
+  clientAuthority: 0
+  syncPosition: 1
+  syncRotation: 1
+  syncScale: 0
+  showGizmos: 0
+  showOverlay: 0
+  overlayColor: {r: 0, g: 0, b: 0, a: 0.5}
+  onlySyncOnChange: 1
+  onlySyncOnChangeCorrectionMultiplier: 2
+  rotationSensitivity: 0.01
+  compressRotation: 0
+  positionPrecision: 0.01
+  scalePrecision: 0.01
 --- !u!114 &3871259552626495467
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -898,3 +928,4 @@ MonoBehaviour:
   syncInterval: 0.1
   timeToLive: 5
   launchForce: 25
+  projectileDamage: 25

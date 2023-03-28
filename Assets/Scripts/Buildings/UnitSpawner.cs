@@ -1,17 +1,36 @@
 using Mirror;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
+[RequireComponent(typeof(Health))]
 public class UnitSpawner : NetworkBehaviour, IPointerClickHandler
 {
     [SerializeField] private List<GameObject> unitPrefabs = new();
     [SerializeField] private Transform unitSpawnLocation;
-
-
+    [SerializeField] Health health;
 
     #region Server
+    public override void OnStartServer()
+    {
+        health.ServerOnDie += HandleServerDie;
+    }
+
+
+    public override void OnStopServer()
+    {
+        health.ServerOnDie -= HandleServerDie;
+
+    }
+
+    [Server]
+    private void HandleServerDie()
+    {
+        NetworkServer.Destroy(gameObject);
+    }
+
     [Command]
     private void CmdSpawnUnit()
     {

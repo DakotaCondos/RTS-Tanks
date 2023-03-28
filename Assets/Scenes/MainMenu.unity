@@ -364,5 +364,17 @@ PrefabInstance:
       propertyPath: offlineScene
       value: Assets/Scenes/MainMenu.unity
       objectReference: {fileID: 0}
+    - target: {fileID: 711960275750789099, guid: 834823851376ca941b23b555857f9b2e, type: 3}
+      propertyPath: spawnPrefabs.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 711960275750789099, guid: 834823851376ca941b23b555857f9b2e, type: 3}
+      propertyPath: spawnPrefabs.Array.data[2]
+      value: 
+      objectReference: {fileID: 6885517240279698945, guid: 0297f277d894fd4419d997dee9896802, type: 3}
+    - target: {fileID: 711960275750789099, guid: 834823851376ca941b23b555857f9b2e, type: 3}
+      propertyPath: spawnPrefabs.Array.data[3]
+      value: 
+      objectReference: {fileID: 3040010817085306747, guid: a745761ac849c5d4b9d2d20a5e3dd41f, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 834823851376ca941b23b555857f9b2e, type: 3}

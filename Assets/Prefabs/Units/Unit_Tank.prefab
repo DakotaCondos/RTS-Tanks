@@ -382,6 +382,7 @@ MonoBehaviour:
   selectedSprite: {fileID: 1762439626477920892}
   targeting: {fileID: 1852471351013897095}
   targetable: {fileID: 3904569482189672604}
+  health: {fileID: 2746932897677584614}
 --- !u!114 &1852471351013897095
 MonoBehaviour:
   m_ObjectHideFlags: 0

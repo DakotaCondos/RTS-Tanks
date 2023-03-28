@@ -31,8 +31,7 @@ public class Health : NetworkBehaviour
         currentHealth = (currentHealth < 0) ? 0 : currentHealth;
         if (currentHealth != 0) { return; }
 
-        // die
-        print($"{name} Died");
+        ServerOnDie?.Invoke();
     }
 
     #endregion
