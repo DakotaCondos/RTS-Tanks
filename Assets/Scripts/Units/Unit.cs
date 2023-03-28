@@ -1,7 +1,5 @@
 using Mirror;
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -11,8 +9,12 @@ public class Unit : NetworkBehaviour
     [SerializeField] UnityEvent onDeselect;
     [SerializeField] UnitMovement unitMovement;
     [SerializeField] SpriteRenderer selectedSprite;
+    [SerializeField] Targeting targeting;
+    [SerializeField] Targetable targetable;
 
     public UnitMovement UnitMovement { get => unitMovement; }
+    public Targeting Targeting { get => targeting; }
+    public Targetable Targetable { get => targetable; }
 
     public static event Action<Unit> ServerOnUnitSpawned;
     public static event Action<Unit> ServerOnUnitDespawned;

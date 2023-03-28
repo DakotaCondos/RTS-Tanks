@@ -1,10 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using Mirror;
 
-public class Targetable : MonoBehaviour
+public class Targetable : NetworkBehaviour
 {
     [SerializeField] Transform target;
-
-    public Transform Target { get => target; }
+    public Transform TargetPoint { get => target; }
 }

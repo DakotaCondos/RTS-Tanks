@@ -1,9 +1,6 @@
 using Mirror;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(Targeting), typeof(Targetable), typeof(NavMeshAgent))]
 public class UnitMovement : NetworkBehaviour
@@ -12,6 +9,7 @@ public class UnitMovement : NetworkBehaviour
     Targeting targeting;
     Targetable targetable;
     private Camera mainCamera;
+    [SerializeField] float chaseRange;
 
     private void Awake()
     {
@@ -24,6 +22,19 @@ public class UnitMovement : NetworkBehaviour
     [ServerCallback]
     private void Update()
     {
+        Targetable target = targeting.Target;
+        if (target != null)
+        {
+            if ((target.transform.position - transform.position).sqrMagnitude > chaseRange * chaseRange)
+            {
+                navMeshAgent.SetDestination(target.transform.position);
+            }
+            else if (navMeshAgent.hasPath)
+            {
+                navMeshAgent.ResetPath();
+            }
+        }
+
         if (!navMeshAgent.hasPath) { return; }
         if (navMeshAgent.remainingDistance > navMeshAgent.stoppingDistance) { return; }
         navMeshAgent.ResetPath();

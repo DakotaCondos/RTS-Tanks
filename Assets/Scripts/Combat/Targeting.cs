@@ -1,11 +1,12 @@
 using Mirror;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Targeting : NetworkBehaviour
 {
-    [SerializeField] Targetable target;
+    Targetable target;
+
+    public Targetable Target { get => target; }
+    public bool HasTarget { get { return target != null; } }
 
     #region server
     [Command]
