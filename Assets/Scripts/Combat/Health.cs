@@ -4,17 +4,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(HealthDisplay))]
 public class Health : NetworkBehaviour
 {
-    [SerializeField] double maxHealth = 100;
     [SerializeField] private bool ownerlessEntity = false;
+    [SerializeField] double maxHealth = 100;
 
-    [SyncVar]
-    double currentHealth;
+    [SyncVar(hook = nameof(HandleHealthChange))] double currentHealth;
+
+    public event Action<double, double> ClientOnHealthChange;
+    public event Action ServerOnDie;
 
     public bool OwnerlessEntity { get => ownerlessEntity; }
-
-    public event Action ServerOnDie;
 
     #region Server
     public override void OnStartServer()
@@ -37,6 +38,10 @@ public class Health : NetworkBehaviour
     #endregion
 
     #region Client
+    private void HandleHealthChange(double oldHealth, double newHealth)
+    {
+        ClientOnHealthChange?.Invoke(newHealth, maxHealth);
+    }
 
     #endregion
 }

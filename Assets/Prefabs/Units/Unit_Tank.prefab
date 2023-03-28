@@ -146,6 +146,37 @@ Transform:
   m_Father: {fileID: 9203326287280940579}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &8531064186774682376
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7110893134435942757}
+  m_Layer: 0
+  m_Name: HealthbarPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7110893134435942757
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8531064186774682376}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 3.5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 392102865882740892}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &9101848266096757683
 GameObject:
   m_ObjectHideFlags: 0
@@ -166,6 +197,7 @@ GameObject:
   - component: {fileID: 3904569482189672604}
   - component: {fileID: 4966745951043983211}
   - component: {fileID: 2746932897677584614}
+  - component: {fileID: 7051111684116104831}
   m_Layer: 0
   m_Name: Unit_Tank
   m_TagString: Untagged
@@ -188,6 +220,7 @@ Transform:
   - {fileID: 9203326287280895201}
   - {fileID: 6381226488973961473}
   - {fileID: 7977464000703593822}
+  - {fileID: 7110893134435942757}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -415,8 +448,23 @@ MonoBehaviour:
   syncDirection: 0
   syncMode: 0
   syncInterval: 0.1
-  maxHealth: 100
   ownerlessEntity: 0
+  maxHealth: 100
+--- !u!114 &7051111684116104831
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9101848266096757683}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd9e895149b22f64395b6e7805bf9156, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  displayHealthbarOnStart: 0
+  HealthbarPrefab: {fileID: 8851865417812530926, guid: 221238de1ee5e9d4fb6921ac5c4ec49f, type: 3}
+  HealthbarTransform: {fileID: 7110893134435942757}
 --- !u!1 &9203326287280677125
 GameObject:
   m_ObjectHideFlags: 0

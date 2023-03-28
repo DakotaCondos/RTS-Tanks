@@ -31,6 +31,37 @@ Transform:
   m_Father: {fileID: 2965027060469854894}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2267595256511075347
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6183765115694296050}
+  m_Layer: 0
+  m_Name: HealthbarPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6183765115694296050
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2267595256511075347}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 3.25, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2965027060469854894}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2413287373201162878
 GameObject:
   m_ObjectHideFlags: 0
@@ -159,6 +190,7 @@ GameObject:
   - component: {fileID: 8778860575482609242}
   - component: {fileID: 6203497730561935976}
   - component: {fileID: 6806743166256962531}
+  - component: {fileID: 5513885202593371988}
   m_Layer: 0
   m_Name: UnitSpawner_Base
   m_TagString: Untagged
@@ -181,6 +213,7 @@ Transform:
   - {fileID: 1678029092286446556}
   - {fileID: 725150173302672467}
   - {fileID: 7627667910836557322}
+  - {fileID: 6183765115694296050}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -263,4 +296,20 @@ MonoBehaviour:
   syncDirection: 0
   syncMode: 0
   syncInterval: 0.1
+  ownerlessEntity: 0
   maxHealth: 500
+--- !u!114 &5513885202593371988
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7951930979197275896}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd9e895149b22f64395b6e7805bf9156, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  displayHealthbarOnStart: 0
+  HealthbarPrefab: {fileID: 8851865417812530926, guid: 221238de1ee5e9d4fb6921ac5c4ec49f, type: 3}
+  HealthbarTransform: {fileID: 6183765115694296050}
