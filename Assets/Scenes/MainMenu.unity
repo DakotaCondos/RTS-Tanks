@@ -318,15 +318,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 711960275750789096, guid: 834823851376ca941b23b555857f9b2e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.936996
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 711960275750789096, guid: 834823851376ca941b23b555857f9b2e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.5467167
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 711960275750789096, guid: 834823851376ca941b23b555857f9b2e, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -5.400387
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 711960275750789096, guid: 834823851376ca941b23b555857f9b2e, type: 3}
       propertyPath: m_LocalRotation.w
@@ -358,23 +358,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 711960275750789099, guid: 834823851376ca941b23b555857f9b2e, type: 3}
       propertyPath: onlineScene
-      value: Assets/Scenes/SampleScene.unity
+      value: Assets/Scenes/Map0.unity
       objectReference: {fileID: 0}
     - target: {fileID: 711960275750789099, guid: 834823851376ca941b23b555857f9b2e, type: 3}
-      propertyPath: offlineScene
-      value: Assets/Scenes/MainMenu.unity
-      objectReference: {fileID: 0}
+      propertyPath: gameOverHandlerPrefab
+      value: 
+      objectReference: {fileID: 1686848704802119478, guid: 1ce3772399e96b94ea32e93358f1f89f, type: 3}
     - target: {fileID: 711960275750789099, guid: 834823851376ca941b23b555857f9b2e, type: 3}
       propertyPath: spawnPrefabs.Array.size
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 711960275750789099, guid: 834823851376ca941b23b555857f9b2e, type: 3}
-      propertyPath: spawnPrefabs.Array.data[2]
+      propertyPath: spawnPrefabs.Array.data[4]
       value: 
-      objectReference: {fileID: 6885517240279698945, guid: 0297f277d894fd4419d997dee9896802, type: 3}
-    - target: {fileID: 711960275750789099, guid: 834823851376ca941b23b555857f9b2e, type: 3}
-      propertyPath: spawnPrefabs.Array.data[3]
-      value: 
-      objectReference: {fileID: 3040010817085306747, guid: a745761ac849c5d4b9d2d20a5e3dd41f, type: 3}
+      objectReference: {fileID: 1686848704802119478, guid: 1ce3772399e96b94ea32e93358f1f89f, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 834823851376ca941b23b555857f9b2e, type: 3}

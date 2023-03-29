@@ -32,15 +32,13 @@ public class UnitProjectile : NetworkBehaviour
     [ServerCallback]
     private void OnTriggerEnter(Collider other)
     {
-        print($"Collided with {other.name}");
         other.TryGetComponent<Health>(out Health health);
         other.TryGetComponent<NetworkIdentity>(out NetworkIdentity networkIdentity);
-        if (health == null || networkIdentity == null) { print("Returning Early"); return; }
+        if (health == null || networkIdentity == null) { return; }
         if (health.OwnerlessEntity || networkIdentity.connectionToClient != connectionToClient)
         {
             health.DealDamage(projectileDamage);
             DestroySelf();
         }
-        print("Nothing Called");
     }
 }
