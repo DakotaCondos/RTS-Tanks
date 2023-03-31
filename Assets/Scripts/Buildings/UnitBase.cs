@@ -1,15 +1,15 @@
-using Mirror;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Mirror;
 using UnityEngine;
 
 public class UnitBase : NetworkBehaviour
 {
-    [SerializeField] Health health;
+    [SerializeField] private Health health = null;
 
-    public static event Action<UnitBase> ServerOnBaseSpawn;
-    public static event Action<UnitBase> ServerOnBaseDespawn;
+    public static event Action<UnitBase> ServerOnBaseSpawned;
+    public static event Action<UnitBase> ServerOnBaseDespawned;
 
     #region Server
 
@@ -17,15 +17,14 @@ public class UnitBase : NetworkBehaviour
     {
         health.ServerOnDie += ServerHandleDie;
 
-        ServerOnBaseSpawn?.Invoke(this);
+        ServerOnBaseSpawned?.Invoke(this);
     }
-
 
     public override void OnStopServer()
     {
-        health.ServerOnDie -= ServerHandleDie;
-        ServerOnBaseDespawn?.Invoke(this);
+        ServerOnBaseDespawned?.Invoke(this);
 
+        health.ServerOnDie -= ServerHandleDie;
     }
 
     [Server]
@@ -33,8 +32,8 @@ public class UnitBase : NetworkBehaviour
     {
         NetworkServer.Destroy(gameObject);
     }
-    #endregion
 
+    #endregion
 
     #region Client
 

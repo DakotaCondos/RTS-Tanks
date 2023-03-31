@@ -1,46 +1,56 @@
-using Mirror;
+using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
+using Mirror;
 using UnityEngine;
 
 public class GameOverHandler : NetworkBehaviour
 {
-    private List<UnitBase> unitBases = new();
+    public static event Action<string> ClientOnGameOver;
+
+    public List<UnitBase> bases = new List<UnitBase>();
 
     #region Server
 
     public override void OnStartServer()
     {
-        UnitBase.ServerOnBaseSpawn += ServerHandleBaseSpawned;
-        UnitBase.ServerOnBaseSpawn += ServerHandleBaseDespawned;
+        UnitBase.ServerOnBaseSpawned += ServerHandleBaseSpawned;
+        UnitBase.ServerOnBaseDespawned += ServerHandleBaseDespawned;
     }
 
     public override void OnStopServer()
     {
-
-        UnitBase.ServerOnBaseSpawn -= ServerHandleBaseSpawned;
-        UnitBase.ServerOnBaseSpawn -= ServerHandleBaseDespawned;
+        UnitBase.ServerOnBaseSpawned -= ServerHandleBaseSpawned;
+        UnitBase.ServerOnBaseDespawned -= ServerHandleBaseDespawned;
     }
 
     [Server]
     private void ServerHandleBaseSpawned(UnitBase unitBase)
     {
-        unitBases.Add(unitBase);
+        bases.Add(unitBase);
     }
 
+    [Server]
     private void ServerHandleBaseDespawned(UnitBase unitBase)
     {
-        unitBases.Remove(unitBase);
-        if (unitBases.Count != 1) { return; }
+        bases.Remove(unitBase);
 
-        //Game is over
-        print($"GameOver! Player{unitBases.FirstOrDefault().netIdentity.connectionToClient} wins");
+        if (bases.Count != 1) { return; }
+
+        int playerId = bases[0].connectionToClient.connectionId;
+
+        RpcGameOver($"Player {playerId}");
     }
 
     #endregion
 
     #region Client
+
+    [ClientRpc]
+    private void RpcGameOver(string winner)
+    {
+        ClientOnGameOver?.Invoke(winner);
+    }
 
     #endregion
 }
