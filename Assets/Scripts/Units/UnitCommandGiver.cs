@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -11,8 +12,15 @@ public class UnitCommandGiver : MonoBehaviour
     void Start()
     {
         mainCamera = Camera.main;
+        GameOverHandler.ClientOnGameOver += ClientHandleGameOver;
 
     }
+
+    private void OnDestroy()
+    {
+        GameOverHandler.ClientOnGameOver -= ClientHandleGameOver;
+    }
+
     private void Update()
     {
         if (!Mouse.current.rightButton.wasPressedThisFrame) { return; }
@@ -48,5 +56,10 @@ public class UnitCommandGiver : MonoBehaviour
         {
             unit.UnitMovement.CmdMove(point);
         }
+    }
+
+    private void ClientHandleGameOver(string winnerName)
+    {
+        enabled = false;
     }
 }
