@@ -7,7 +7,7 @@ using UnityEngine;
 [RequireComponent(typeof(HealthDisplay))]
 public class Health : NetworkBehaviour
 {
-    [SerializeField] private bool ownerlessEntity = false;
+    [SerializeField] private bool isOwnerlessEntity = false;
     [SerializeField] double maxHealth = 100;
 
     [SyncVar(hook = nameof(HandleHealthChange))] double currentHealth;
@@ -15,7 +15,7 @@ public class Health : NetworkBehaviour
     public event Action<double, double> ClientOnHealthChange;
     public event Action ServerOnDie;
 
-    public bool OwnerlessEntity { get => ownerlessEntity; }
+    public bool OwnerlessEntity { get => isOwnerlessEntity; }
 
     #region Server
     public override void OnStartServer()
@@ -32,12 +32,9 @@ public class Health : NetworkBehaviour
     [Server]
     private void ServerHandlePlayerDie(int connectionId)
     {
-        if (connectionToClient is null)
-        {
-            print("connectionToClient is null");
-        }
-        if (connectionToClient.connectionId != connectionId) { return; }
+        if (isOwnerlessEntity) { return; }
 
+        if (connectionToClient.connectionId != connectionId) { return; }
         DealDamage(currentHealth);
     }
 
