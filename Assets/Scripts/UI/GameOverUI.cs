@@ -10,9 +10,11 @@ public class GameOverUI : MonoBehaviour
 {
     [SerializeField] TextBlock winningPlayerTextBlock;
     [SerializeField] GameObject gameOverDisplayObject;
+    [SerializeField] GameUIManager gameUIManager;
+
+
     void Start()
     {
-        print("GameOverUi Start");
         GameOverHandler.ClientOnGameOver += ClientHandleGameOver;
         gameOverDisplayObject.SetActive(false);
 
@@ -25,7 +27,7 @@ public class GameOverUI : MonoBehaviour
     }
     private void ClientHandleGameOver(string winningPlayer)
     {
-        print("GameOverUi ClientHandleGameOver");
+        gameUIManager.ShowGameOverDisplay();
         gameOverDisplayObject.SetActive(true);
         winningPlayerTextBlock.Text = winningPlayer;
 

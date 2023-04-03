@@ -10,6 +10,7 @@ public class Building : NetworkBehaviour
     [SerializeField] Sprite icon;
     [SerializeField] int id;
     [SerializeField] int price;
+    public BuildingStats stats;
 
     public Sprite Icon { get => icon; }
     public int Id { get => id; }
