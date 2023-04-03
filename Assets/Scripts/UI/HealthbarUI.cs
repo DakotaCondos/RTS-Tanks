@@ -13,12 +13,6 @@ public class HealthbarUI : MonoBehaviour
         mainCamera = Camera.main;
     }
 
-    private void Update()
-    {
-        transform.rotation = mainCamera.transform.rotation;
-    }
-
-
     [ContextMenu("Test Health Block")]
     public void Test()
     {
