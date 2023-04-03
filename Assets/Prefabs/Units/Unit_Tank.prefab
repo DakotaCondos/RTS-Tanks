@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7977464000703593822}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: TargetPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -41,7 +41,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6381226488973961473}
   - component: {fileID: 1762439626477920892}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: UnitSelectedHighlighter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -124,7 +124,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2931859007200561078}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ProjectileSpawnPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -155,7 +155,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7110893134435942757}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: HealthbarPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -198,7 +198,7 @@ GameObject:
   - component: {fileID: 4966745951043983211}
   - component: {fileID: 2746932897677584614}
   - component: {fileID: 7051111684116104831}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Unit_Tank
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -449,7 +449,7 @@ MonoBehaviour:
   syncDirection: 0
   syncMode: 0
   syncInterval: 0.1
-  ownerlessEntity: 0
+  isOwnerlessEntity: 0
   maxHealth: 100
 --- !u!114 &7051111684116104831
 MonoBehaviour:
@@ -477,7 +477,7 @@ GameObject:
   - component: {fileID: 9203326287280940579}
   - component: {fileID: 9203326287279607947}
   - component: {fileID: 9203326287278515985}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: unit_Tank_Combat_A_Turret
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -562,7 +562,7 @@ GameObject:
   - component: {fileID: 9203326287280895201}
   - component: {fileID: 9203326287279670079}
   - component: {fileID: 9203326287278511563}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: unit_Tank_Combat_A
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -646,7 +646,7 @@ GameObject:
   - component: {fileID: 9203326287280955383}
   - component: {fileID: 9203326287279672931}
   - component: {fileID: 9203326287278514689}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: unit_Tank_Combat_A_Gun
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -298,7 +298,7 @@ MonoBehaviour:
   syncDirection: 0
   syncMode: 0
   syncInterval: 0.1
-  ownerlessEntity: 0
+  isOwnerlessEntity: 0
   maxHealth: 500
 --- !u!114 &5513885202593371988
 MonoBehaviour:
