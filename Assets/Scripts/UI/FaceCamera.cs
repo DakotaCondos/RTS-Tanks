@@ -13,7 +13,7 @@ public class FaceCamera : MonoBehaviour
 
     private void LateUpdate()
     {
-        transform.rotation = mainCamera.transform.rotation;
+        transform.forward = mainCamera.transform.forward;
     }
 }
 
