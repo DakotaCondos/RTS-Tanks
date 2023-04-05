@@ -65,3 +65,5 @@ MonoBehaviour:
   syncDirection: 0
   syncMode: 0
   syncInterval: 0.1
+  playerBuildings:
+  - {fileID: 4677462153606422780, guid: 191fb4b4eebcb5449b00f930ae176aeb, type: 3}

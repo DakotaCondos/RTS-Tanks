@@ -7,15 +7,19 @@ using UnityEngine;
 
 public class Building : NetworkBehaviour
 {
-    [SerializeField] Sprite icon;
-    [SerializeField] int id;
-    [SerializeField] int price;
-    public BuildingStats stats;
+    [SerializeField] private Texture2D icon;
+    [SerializeField] private int id = -1;
+    [SerializeField] private int price;
+    [SerializeField] private string buildingName;
+    [SerializeField] private string buildingDescription;
+    [SerializeField] private GameObject buildingBlueprint;
 
-    public Sprite Icon { get => icon; }
+    public Texture2D Icon { get => icon; }
     public int Id { get => id; }
     public int Price { get => price; }
-
+    public string Name { get => buildingName; }
+    public string BuildingDescription { get => buildingDescription; }
+    public GameObject BuildingBlueprint { get => buildingBlueprint; }
 
     public static event Action<Building> ServerOnBuildingSpawned;
     public static event Action<Building> ServerOnBuildingDespawned;

@@ -8,22 +8,24 @@ public class BuildingHotbar : MonoBehaviour
 {
     [SerializeField] GameObject hotbarItemPrefab;
     [SerializeField] UIBlock2D hotbar;
-
     [SerializeField] List<BuildingHotbarItem> currentHotbarItems;
+    RTSPlayer player;
 
     private void Awake()
     {
         currentHotbarItems = new();
     }
 
-    public void AddItemToHotbar(BuildingStats stats)
+    public void AddItemToHotbar(Building building)
     {
         foreach (var item in currentHotbarItems)
         {
-            if (String.Equals(stats.buildingName, item.BuildingName)) { return; }
+            if (String.Equals(building.Name, item.BuildingName)) { return; }
         }
-        GameObject newHotbarItem = Instantiate(hotbarItemPrefab, hotbar.transform);
-        currentHotbarItems.Add(newHotbarItem.GetComponent<BuildingHotbarItem>());
+        GameObject hotbarItemInstance = Instantiate(hotbarItemPrefab, hotbar.transform);
+        BuildingHotbarItem buildingHotbarItem = hotbarItemInstance.GetComponent<BuildingHotbarItem>();
+        buildingHotbarItem.SetHotbarItemDetails(building);
+        currentHotbarItems.Add(buildingHotbarItem);
     }
 
     public void ClearHotbarItems()
