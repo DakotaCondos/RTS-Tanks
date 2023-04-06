@@ -6,10 +6,10 @@ using UnityEngine;
 
 public class PlayerCanBuildThis : NetworkBehaviour
 {
-    [SerializeField] Building unlockableBuilding;
+    [SerializeField] List<Building> unlockableBuildings;
     BuildingHotbar buildingHotbar;
 
-    public Building UnlockableBuilding { get => unlockableBuilding; }
+    public List<Building> UnlockableBuildings { get => unlockableBuildings; }
 
     //the goal of this class is to allow only the player who placed a thing this script is attached to, to unlock new types of buildings to be placed
     private void Awake()
@@ -18,7 +18,7 @@ public class PlayerCanBuildThis : NetworkBehaviour
     }
     private void Start()
     {
-        AddBuildingToHotbar(UnlockableBuilding);
+        AddBuildingsToHotbar(UnlockableBuildings);
     }
 
     private void OnDestroy()
@@ -29,12 +29,15 @@ public class PlayerCanBuildThis : NetworkBehaviour
         }
     }
 
-    private void AddBuildingToHotbar(Building unlockableBuilding)
+    private void AddBuildingsToHotbar(List<Building> buildings)
     {
         //if this is owned by clients connection to server
         if (isOwned)
         {
-            buildingHotbar.AddItemToHotbar(unlockableBuilding);
+            foreach (var item in buildings)
+            {
+                buildingHotbar.AddItemToHotbar(item);
+            }
         }
     }
 }

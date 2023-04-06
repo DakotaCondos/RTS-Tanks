@@ -7,8 +7,13 @@ public class RTSPlayer : NetworkBehaviour
 {
     private List<Unit> playersUnits = new();
     [SerializeField] private List<Building> playerBuildings = new();
+
+    [SyncVar(hook = nameof(ClientHandleResourceChange))] int resources;
+    public event Action<int> ClientOnResourceChange;
+
     public List<Unit> PlayersUnits { get => playersUnits; }
     public List<Building> PlayerBuildings { get => playerBuildings; }
+    public int Resources { get => resources; }
 
     private void Start()
     {
@@ -72,6 +77,12 @@ public class RTSPlayer : NetworkBehaviour
 
         GameObject buildingInstance = Instantiate(buildingToPlace.gameObject, point, rotation);
         NetworkServer.Spawn(buildingInstance, connectionToClient);
+    }
+
+    [Server]
+    public void AddResources(int value)
+    {
+        resources += value;
     }
 
     private void ServerHandleUnitSpawned(Unit unit)
@@ -141,6 +152,10 @@ public class RTSPlayer : NetworkBehaviour
         playersUnits.Remove(unit);
     }
 
+    private void ClientHandleResourceChange(int oldResources, int newResources)
+    {
+        ClientOnResourceChange?.Invoke(newResources);
+    }
 
 
 

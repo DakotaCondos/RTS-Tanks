@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &7574562840933255800
+--- !u!1 &2242671084569718192
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,24 +8,24 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 5997473058325749754}
-  - component: {fileID: 7816034228812138181}
-  - component: {fileID: 6447348875116185086}
+  - component: {fileID: 948753914620659471}
+  - component: {fileID: 9173288878137036565}
+  - component: {fileID: 3720443021539546099}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &5997473058325749754
+--- !u!4 &948753914620659471
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7574562840933255800}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_GameObject: {fileID: 2242671084569718192}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -33,21 +33,21 @@ Transform:
   m_Father: {fileID: 4677462153606422725}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &7816034228812138181
+--- !u!33 &9173288878137036565
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7574562840933255800}
+  m_GameObject: {fileID: 2242671084569718192}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!23 &6447348875116185086
+--- !u!23 &3720443021539546099
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7574562840933255800}
+  m_GameObject: {fileID: 2242671084569718192}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -127,7 +127,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 306880154729112013, guid: ecbcf85939799f84a81b76b768effc86, type: 3}
       propertyPath: _assetId
-      value: 2008538038
+      value: 1292368204
       objectReference: {fileID: 0}
     - target: {fileID: 306880154729112014, guid: ecbcf85939799f84a81b76b768effc86, type: 3}
       propertyPath: m_RootOrder
@@ -183,15 +183,35 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 306880154729112054, guid: ecbcf85939799f84a81b76b768effc86, type: 3}
       propertyPath: m_Name
-      value: UnitBase
+      value: ResourceGenerator
+      objectReference: {fileID: 0}
+    - target: {fileID: 306880154729112055, guid: ecbcf85939799f84a81b76b768effc86, type: 3}
+      propertyPath: id
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 306880154729112055, guid: ecbcf85939799f84a81b76b768effc86, type: 3}
+      propertyPath: icon
+      value: 
+      objectReference: {fileID: 2800000, guid: a793dd7c48cfd694ca27138886d0f63b, type: 3}
+    - target: {fileID: 306880154729112055, guid: ecbcf85939799f84a81b76b768effc86, type: 3}
+      propertyPath: price
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 306880154729112055, guid: ecbcf85939799f84a81b76b768effc86, type: 3}
       propertyPath: buildingName
-      value: Player Base
+      value: DevBldg
       objectReference: {fileID: 0}
     - target: {fileID: 306880154729112055, guid: ecbcf85939799f84a81b76b768effc86, type: 3}
+      propertyPath: buildingPreview
+      value: 
+      objectReference: {fileID: 850671066480220734, guid: 7b5421ee767c03c4b96af2529b326078, type: 3}
+    - target: {fileID: 306880154729112055, guid: ecbcf85939799f84a81b76b768effc86, type: 3}
+      propertyPath: buildingBlueprint
+      value: 
+      objectReference: {fileID: 850671066480220734, guid: 897ff8cd36c802248a86e63d0da2d278, type: 3}
+    - target: {fileID: 306880154729112055, guid: ecbcf85939799f84a81b76b768effc86, type: 3}
       propertyPath: buildingDescription
-      value: If this dies, you lose the game
+      value: Test Building
       objectReference: {fileID: 0}
     - target: {fileID: 1686551036717461001, guid: ecbcf85939799f84a81b76b768effc86, type: 3}
       propertyPath: m_LocalPosition.y
@@ -221,7 +241,7 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 306880154729112054, guid: ecbcf85939799f84a81b76b768effc86, type: 3}
   m_PrefabInstance: {fileID: 4948311210286481675}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &7340719839507487976
+--- !u!114 &2908717264779490671
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -230,28 +250,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 4677462153606422781}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3d1b473500df41b4c94c10b6b6d838d0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  syncDirection: 0
-  syncMode: 0
-  syncInterval: 0.1
-  unlockableBuildings:
-  - {fileID: 4677462153606422780, guid: 191fb4b4eebcb5449b00f930ae176aeb, type: 3}
-  - {fileID: 4677462153606422780, guid: 27838717e61906340a5075cb48c8c5a7, type: 3}
---- !u!114 &8986106806754203083
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4677462153606422781}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f11078ad3a92a874fa6e27830d14c2ee, type: 3}
+  m_Script: {fileID: 11500000, guid: a496b6d66e3540041971b421dceb6b43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   syncDirection: 0
   syncMode: 0
   syncInterval: 0.1
   health: {fileID: 4677462153606422779}
+  resourcesPerInterval: 20
+  secondsPerInterval: 5

@@ -47,7 +47,10 @@ public class BuildingHotbar : MonoBehaviour
         {
             if (!item.TryGetComponent<PlayerCanBuildThis>(out PlayerCanBuildThis unlocked)) { return; }
 
-            AddItemToHotbar(unlocked.UnlockableBuilding);
+            foreach (var building in unlocked.UnlockableBuildings)
+            {
+                AddItemToHotbar(building);
+            }
         }
     }
 
