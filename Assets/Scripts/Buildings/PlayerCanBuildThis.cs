@@ -8,14 +8,25 @@ public class PlayerCanBuildThis : NetworkBehaviour
 {
     [SerializeField] Building unlockableBuilding;
     BuildingHotbar buildingHotbar;
-    //the goal of this class is to allow only the player who placed a thing this script is attacked to, to unlock new types of buildings to be placed
+
+    public Building UnlockableBuilding { get => unlockableBuilding; }
+
+    //the goal of this class is to allow only the player who placed a thing this script is attached to, to unlock new types of buildings to be placed
     private void Awake()
     {
         buildingHotbar = FindObjectOfType<BuildingHotbar>();
     }
     private void Start()
     {
-        AddBuildingToHotbar(unlockableBuilding);
+        AddBuildingToHotbar(UnlockableBuilding);
+    }
+
+    private void OnDestroy()
+    {
+        if (isOwned)
+        {
+            buildingHotbar.CalculateHotbarItems();
+        }
     }
 
     private void AddBuildingToHotbar(Building unlockableBuilding)

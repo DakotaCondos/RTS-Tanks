@@ -50,7 +50,10 @@ public class UnitSelectionHandler : MonoBehaviour
     private void ActiveRTSPlayer()
     {
         if (rtsPlayer != null) { return; }
-        rtsPlayer = NetworkClient.connection.identity.GetComponent<RTSPlayer>();
+        if (NetworkClient.connection.identity.TryGetComponent<RTSPlayer>(out RTSPlayer player))
+        {
+            rtsPlayer = player;
+        }
     }
 
     private void StartSelectionArea()

@@ -10,13 +10,13 @@ public class RTSPlayer : NetworkBehaviour
     public List<Unit> PlayersUnits { get => playersUnits; }
     public List<Building> PlayerBuildings { get => playerBuildings; }
 
-
-    //Everything in dev should be removed on final build
-    #region Dev
     private void Start()
     {
         DebugCheckForDuplicateBuildings();
     }
+
+    //Everything in dev should be removed on final build
+    #region Dev
     private void DebugCheckForDuplicateBuildings()
     {
         // Check for duplicates in the list
