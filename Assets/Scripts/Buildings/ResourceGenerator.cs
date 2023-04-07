@@ -45,7 +45,7 @@ public class ResourceGenerator : NetworkBehaviour
         if (timer <= 0)
         {
             timer += secondsPerInterval;
-            rtsPlayer.AddResources(resourcesPerInterval);
+            rtsPlayer.ModifyResources(resourcesPerInterval);
         }
     }
 }

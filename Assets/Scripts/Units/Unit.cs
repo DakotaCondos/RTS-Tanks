@@ -14,10 +14,12 @@ public class Unit : NetworkBehaviour
     [SerializeField] Targeting targeting;
     [SerializeField] Targetable targetable;
     [SerializeField] Health health;
+    [SerializeField] int price = 20;
 
     public UnitMovement UnitMovement { get => unitMovement; }
     public Targeting Targeting { get => targeting; }
     public Targetable Targetable { get => targetable; }
+    public int Price { get => price; }
 
     public static event Action<Unit> ServerOnUnitSpawned;
     public static event Action<Unit> ServerOnUnitDespawned;

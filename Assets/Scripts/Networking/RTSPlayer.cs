@@ -80,9 +80,9 @@ public class RTSPlayer : NetworkBehaviour
     }
 
     [Server]
-    public void AddResources(int value)
+    public void ModifyResources(int difference)
     {
-        resources += value;
+        resources += difference;
     }
 
     private void ServerHandleUnitSpawned(Unit unit)

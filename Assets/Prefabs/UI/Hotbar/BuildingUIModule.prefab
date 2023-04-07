@@ -499,8 +499,8 @@ MonoBehaviour:
   autoLayout:
     Axis: 1
     Spacing:
-      Raw: 0
-      Type: 0
+      Raw: 0.02
+      Type: 1
     SpacingMinMax:
       Min: 0
       Max: Infinity
