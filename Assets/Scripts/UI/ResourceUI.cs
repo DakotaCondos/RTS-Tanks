@@ -19,11 +19,18 @@ public class ResourceUI : MonoBehaviour
     private void ActiveRTSPlayer()
     {
         if (rtsPlayer != null) { return; }
-        if (NetworkClient.connection.identity.TryGetComponent<RTSPlayer>(out RTSPlayer player))
+        try
         {
-            rtsPlayer = player;
-            ClientHandleResourcesChanged(player.Resources);
-            rtsPlayer.ClientOnResourceChange += ClientHandleResourcesChanged;
+            if (NetworkClient.connection.identity.TryGetComponent<RTSPlayer>(out RTSPlayer player))
+            {
+                rtsPlayer = player;
+                ClientHandleResourcesChanged(player.Resources);
+                rtsPlayer.ClientOnResourceChange += ClientHandleResourcesChanged;
+            }
+        }
+        catch (NullReferenceException)
+        {
+            return;
         }
     }
 

@@ -3,6 +3,7 @@ using Nova;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class BuildingHotbarItem : MonoBehaviour
@@ -20,12 +21,20 @@ public class BuildingHotbarItem : MonoBehaviour
     public TextBlock BuildingName { get => buildingName; }
 
     [SerializeField] float rotationSpeed = 10f;
+    Renderer blueprintRenderer = null;
+    [SerializeField] BoxCollider buildingCollider;
+    [SerializeField] Color BlueprintBad;
+    [SerializeField] Color BlueprintGood;
 
     private void Awake()
     {
         mainCamera = Camera.main;
     }
+    private void Start()
+    {
+        buildingCollider = buildingPrefab.GetComponent<BoxCollider>();
 
+    }
 
 
     private void Update()
@@ -38,6 +47,8 @@ public class BuildingHotbarItem : MonoBehaviour
         Placement();
         BlueprintRotation();
     }
+
+
 
     private void BlueprintRotation()
     {
@@ -82,6 +93,10 @@ public class BuildingHotbarItem : MonoBehaviour
 
     public void StartBuildingPlacement()
     {
+
+
+        if (rtsPlayer.Resources < buildingPrefab.GetComponent<Building>().Price) { return; }
+
         isBuildingPrefab = true;
         Quaternion cameraRotation = Quaternion.Euler(0, mainCamera.transform.rotation.eulerAngles.y, 0);
         buildingPreviewInstance = Instantiate(buildingBlueprint, Vector3.zero, cameraRotation);
@@ -92,6 +107,20 @@ public class BuildingHotbarItem : MonoBehaviour
         RaycastHit hit;
         if (!Physics.Raycast(mainCamera.ScreenPointToRay(Input.mousePosition), out hit, Mathf.Infinity, floorLayerMask)) { return; }
         buildingPreviewInstance.transform.position = hit.point;
+        BlueprintColor(hit.point);
+
+    }
+
+    private void BlueprintColor(Vector3 point)
+    {
+        blueprintRenderer = buildingPreviewInstance.GetComponentInChildren<Renderer>();
+        if (blueprintRenderer == null)
+        {
+            print("blueprint renderer is null");
+        }
+        Color blueprintColor = rtsPlayer.CanPlaceBuildingHere(buildingCollider, point) ? BlueprintGood : BlueprintBad;
+
+        blueprintRenderer.material.color = blueprintColor;
     }
 
     private void PlaceBuilding(RaycastHit hit)

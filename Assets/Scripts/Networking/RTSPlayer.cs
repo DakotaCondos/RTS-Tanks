@@ -1,14 +1,17 @@
 using Mirror;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class RTSPlayer : NetworkBehaviour
 {
     private List<Unit> playersUnits = new();
     [SerializeField] private List<Building> playerBuildings = new();
-
-    [SyncVar(hook = nameof(ClientHandleResourceChange))] int resources;
+    [SerializeField] private List<Building> allBuildableBuildings = new();
+    [SerializeField] LayerMask buildingLayerMask = new();
+    [SerializeField] float buildingRange = 8f;
+    [SyncVar(hook = nameof(ClientHandleResourceChange))] int resources = 200;
     public event Action<int> ClientOnResourceChange;
 
     public List<Unit> PlayersUnits { get => playersUnits; }
@@ -20,6 +23,23 @@ public class RTSPlayer : NetworkBehaviour
         DebugCheckForDuplicateBuildings();
     }
 
+    public bool CanPlaceBuildingHere(BoxCollider buildingCollider, Vector3 point)
+    {
+        if (Physics.CheckBox(point + buildingCollider.center, buildingCollider.size / 2f, Quaternion.identity, buildingLayerMask))
+        {
+            return false;
+        }
+
+        foreach (var item in playerBuildings)
+        {
+            if ((point - item.transform.position).sqrMagnitude <= buildingRange * buildingRange)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
     //Everything in dev should be removed on final build
     #region Dev
     private void DebugCheckForDuplicateBuildings()
@@ -27,7 +47,7 @@ public class RTSPlayer : NetworkBehaviour
         // Check for duplicates in the list
         Debug.LogWarning("Checking for duplicate building id's");
         HashSet<int> ids = new HashSet<int>();
-        foreach (Building building in playerBuildings)
+        foreach (Building building in allBuildableBuildings)
         {
             if (!ids.Add(building.Id))
             {
@@ -59,15 +79,7 @@ public class RTSPlayer : NetworkBehaviour
     public void CmdTryPlaceBuilding(int buildingId, Vector3 point, Quaternion rotation)
     {
         Building buildingToPlace = null;
-
-        foreach (var item in playerBuildings)
-        {
-            if (buildingId == item.Id)
-            {
-                buildingToPlace = item;
-                break;
-            }
-        }
+        buildingToPlace = allBuildableBuildings.First(s => s.Id == buildingId);
 
         if (buildingToPlace == null)
         {
@@ -75,8 +87,25 @@ public class RTSPlayer : NetworkBehaviour
             return;
         }
 
+        if (resources < buildingToPlace.Price) { return; }
+
+        BoxCollider buildingCollider = buildingToPlace.GetComponent<BoxCollider>();
+        if (!CanPlaceBuildingHere(buildingCollider, point)) { return; }
+
+        bool inRange = false;
+        foreach (var item in playerBuildings)
+        {
+            if ((point - item.transform.position).sqrMagnitude <= buildingRange * buildingRange)
+            {
+                inRange = true;
+                break;
+            }
+        }
+        if (!inRange) { return; }
+
         GameObject buildingInstance = Instantiate(buildingToPlace.gameObject, point, rotation);
         NetworkServer.Spawn(buildingInstance, connectionToClient);
+        ModifyResources(-buildingToPlace.Price);
     }
 
     [Server]

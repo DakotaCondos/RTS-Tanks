@@ -7,7 +7,7 @@ using UnityEngine.EventSystems;
 [RequireComponent(typeof(Health))]
 public class UnitSpawner : NetworkBehaviour, IPointerClickHandler
 {
-    [SerializeField] private Unit unitPrefab = new();
+    [SerializeField] private Unit unitPrefab;
     [SerializeField] private Transform unitSpawnLocation;
     [SerializeField] Health health;
     [SerializeField] int maxUnitQue = 5;

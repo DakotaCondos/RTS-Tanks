@@ -50,9 +50,16 @@ public class UnitSelectionHandler : MonoBehaviour
     private void ActiveRTSPlayer()
     {
         if (rtsPlayer != null) { return; }
-        if (NetworkClient.connection.identity.TryGetComponent<RTSPlayer>(out RTSPlayer player))
+        try
         {
-            rtsPlayer = player;
+            if (NetworkClient.connection.identity.TryGetComponent<RTSPlayer>(out RTSPlayer player))
+            {
+                rtsPlayer = player;
+            }
+        }
+        catch (NullReferenceException)
+        {
+            return;
         }
     }
 

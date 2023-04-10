@@ -248,6 +248,18 @@ MonoBehaviour:
     ReverseOrder: 0
     alignment: -1
     Offset: 0
+    Cross:
+      Axis: 0
+      Spacing:
+        Raw: 0
+        Type: 0
+      SpacingMinMax:
+        Min: 0
+        Max: Infinity
+      AutoSpace: 0
+      ReverseOrder: 0
+      alignment: -1
+      ExpandToGrid: 0
   visibility:
     ZIndex: 0
     BlockType: 2
@@ -552,6 +564,18 @@ MonoBehaviour:
     ReverseOrder: 0
     alignment: -1
     Offset: 0
+    Cross:
+      Axis: 0
+      Spacing:
+        Raw: 0
+        Type: 0
+      SpacingMinMax:
+        Min: 0
+        Max: Infinity
+      AutoSpace: 0
+      ReverseOrder: 0
+      alignment: -1
+      ExpandToGrid: 0
   visibility:
     ZIndex: 0
     BlockType: 1
@@ -833,6 +857,18 @@ MonoBehaviour:
     ReverseOrder: 0
     alignment: -1
     Offset: 0
+    Cross:
+      Axis: 0
+      Spacing:
+        Raw: 0
+        Type: 0
+      SpacingMinMax:
+        Min: 0
+        Max: Infinity
+      AutoSpace: 0
+      ReverseOrder: 0
+      alignment: -1
+      ExpandToGrid: 0
   visibility:
     ZIndex: 0
     BlockType: 1
@@ -1162,6 +1198,18 @@ MonoBehaviour:
     ReverseOrder: 0
     alignment: -1
     Offset: 0
+    Cross:
+      Axis: 0
+      Spacing:
+        Raw: 0
+        Type: 0
+      SpacingMinMax:
+        Min: 0
+        Max: Infinity
+      AutoSpace: 0
+      ReverseOrder: 0
+      alignment: -1
+      ExpandToGrid: 0
   visibility:
     ZIndex: 0
     BlockType: 2
@@ -1468,6 +1516,18 @@ MonoBehaviour:
     ReverseOrder: 0
     alignment: -1
     Offset: 0
+    Cross:
+      Axis: 0
+      Spacing:
+        Raw: 0
+        Type: 0
+      SpacingMinMax:
+        Min: 0
+        Max: Infinity
+      AutoSpace: 0
+      ReverseOrder: 0
+      alignment: -1
+      ExpandToGrid: 0
   visibility:
     ZIndex: 0
     BlockType: 1
@@ -1564,6 +1624,15 @@ MonoBehaviour:
   buildingName: {fileID: 3658093934351946800}
   iconBlock: {fileID: 8635805100941474048}
   buildingPrice: {fileID: 7452046186629824893}
+  floorLayerMask:
+    serializedVersion: 2
+    m_Bits: 0
+  buildingPrefab: {fileID: 0}
+  buildingBlueprint: {fileID: 0}
+  rotationSpeed: 10
+  buildingCollider: {fileID: 0}
+  BlueprintBad: {r: 1, g: 0, b: 0, a: 0.4}
+  BlueprintGood: {r: 0, g: 1, b: 0, a: 0.4}
 --- !u!1 &6984258476819290562
 GameObject:
   m_ObjectHideFlags: 0
@@ -1764,6 +1833,18 @@ MonoBehaviour:
     ReverseOrder: 0
     alignment: -1
     Offset: 0
+    Cross:
+      Axis: 0
+      Spacing:
+        Raw: 0
+        Type: 0
+      SpacingMinMax:
+        Min: 0
+        Max: Infinity
+      AutoSpace: 0
+      ReverseOrder: 0
+      alignment: -1
+      ExpandToGrid: 0
   visibility:
     ZIndex: 0
     BlockType: 1

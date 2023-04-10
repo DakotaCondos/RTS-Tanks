@@ -14,6 +14,12 @@ public class RTSNetworkManager : NetworkManager
 
         GameObject unitSpawner = Instantiate(unitBasePrefab, conn.identity.transform.position, conn.identity.transform.rotation);
         NetworkServer.Spawn(unitSpawner, conn);
+
+
+        //if (NetworkClient.connection.identity.TryGetComponent<RTSPlayer>(out RTSPlayer player))
+        //{
+        //    player.PlayerBuildings.Add(unitSpawner.GetComponent<Building>());
+        //}
     }
 
     public override void OnServerSceneChanged(string sceneName)

@@ -1156,6 +1156,10 @@ MonoBehaviour:
     m_Bits: 1024
   buildingPrefab: {fileID: 0}
   buildingBlueprint: {fileID: 0}
+  rotationSpeed: 10
+  buildingCollider: {fileID: 0}
+  BlueprintBad: {r: 1, g: 0, b: 0, a: 0.4}
+  BlueprintGood: {r: 0, g: 1, b: 0, a: 0.4}
 --- !u!1 &2033961095567371686
 GameObject:
   m_ObjectHideFlags: 0

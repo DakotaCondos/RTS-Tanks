@@ -1018,7 +1018,7 @@ MonoBehaviour:
   layout:
     Size:
       X:
-        Raw: 0.91480213
+        Raw: 0.96136117
         Type: 0
       Y:
         Raw: 1.2720001
@@ -1199,7 +1199,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 5
+  m_text: 0
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e70f856c724ca874d925db6ececefd1a, type: 2}
   m_sharedMaterial: {fileID: -3291119994650313938, guid: e70f856c724ca874d925db6ececefd1a, type: 2}
