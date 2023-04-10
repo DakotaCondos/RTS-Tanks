@@ -11,12 +11,14 @@ public class RTSPlayer : NetworkBehaviour
     [SerializeField] private List<Building> allBuildableBuildings = new();
     [SerializeField] LayerMask buildingLayerMask = new();
     [SerializeField] float buildingRange = 8f;
+    [SerializeField] Color teamColor = new();
     [SyncVar(hook = nameof(ClientHandleResourceChange))] int resources = 200;
     public event Action<int> ClientOnResourceChange;
 
     public List<Unit> PlayersUnits { get => playersUnits; }
     public List<Building> PlayerBuildings { get => playerBuildings; }
     public int Resources { get => resources; }
+    public Color TeamColor { get => teamColor; }
 
     private void Start()
     {
@@ -112,6 +114,12 @@ public class RTSPlayer : NetworkBehaviour
     public void ModifyResources(int difference)
     {
         resources += difference;
+    }
+
+    [Server]
+    public void SetTeamColor(Color newTeamColor)
+    {
+        teamColor = newTeamColor;
     }
 
     private void ServerHandleUnitSpawned(Unit unit)

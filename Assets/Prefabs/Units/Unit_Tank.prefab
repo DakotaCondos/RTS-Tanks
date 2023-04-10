@@ -198,6 +198,7 @@ GameObject:
   - component: {fileID: 4966745951043983211}
   - component: {fileID: 2746932897677584614}
   - component: {fileID: 7051111684116104831}
+  - component: {fileID: 3193770940609773649}
   m_Layer: 8
   m_Name: Unit_Tank
   m_TagString: Untagged
@@ -383,6 +384,7 @@ MonoBehaviour:
   targeting: {fileID: 1852471351013897095}
   targetable: {fileID: 3904569482189672604}
   health: {fileID: 2746932897677584614}
+  price: 20
 --- !u!114 &1852471351013897095
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -466,6 +468,23 @@ MonoBehaviour:
   displayHealthbarOnStart: 0
   HealthbarPrefab: {fileID: 8851865417812530926, guid: 221238de1ee5e9d4fb6921ac5c4ec49f, type: 3}
   HealthbarTransform: {fileID: 7110893134435942757}
+--- !u!114 &3193770940609773649
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9101848266096757683}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bad1689e0b0840744a2ae2b6691561ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0.1
+  colorRenderers:
+  - {fileID: 9203326287278511563}
 --- !u!1 &9203326287280677125
 GameObject:
   m_ObjectHideFlags: 0
