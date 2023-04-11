@@ -221,6 +221,24 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 306880154729112054, guid: ecbcf85939799f84a81b76b768effc86, type: 3}
   m_PrefabInstance: {fileID: 4948311210286481675}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2541451487017515842
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4677462153606422781}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bad1689e0b0840744a2ae2b6691561ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0.1
+  colorRenderers:
+  - {fileID: 6447348875116185086}
+  - {fileID: 216728200528240280}
 --- !u!114 &7340719839507487976
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -255,20 +273,65 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   health: {fileID: 4677462153606422779}
---- !u!114 &2541451487017515842
-MonoBehaviour:
+--- !u!1001 &7007100654116788825
+PrefabInstance:
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 4677462153606422725}
+    m_Modifications:
+    - target: {fileID: 1053250587479396197, guid: 80fd1bd0c4550144b85269699186bf37, type: 3}
+      propertyPath: m_Name
+      value: MinimapIconBuilding
+      objectReference: {fileID: 0}
+    - target: {fileID: 9152931249138763878, guid: 80fd1bd0c4550144b85269699186bf37, type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 9152931249138763878, guid: 80fd1bd0c4550144b85269699186bf37, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9152931249138763878, guid: 80fd1bd0c4550144b85269699186bf37, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 9152931249138763878, guid: 80fd1bd0c4550144b85269699186bf37, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9152931249138763878, guid: 80fd1bd0c4550144b85269699186bf37, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9152931249138763878, guid: 80fd1bd0c4550144b85269699186bf37, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9152931249138763878, guid: 80fd1bd0c4550144b85269699186bf37, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9152931249138763878, guid: 80fd1bd0c4550144b85269699186bf37, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9152931249138763878, guid: 80fd1bd0c4550144b85269699186bf37, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9152931249138763878, guid: 80fd1bd0c4550144b85269699186bf37, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9152931249138763878, guid: 80fd1bd0c4550144b85269699186bf37, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 80fd1bd0c4550144b85269699186bf37, type: 3}
+--- !u!23 &216728200528240280 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 7079590225986602177, guid: 80fd1bd0c4550144b85269699186bf37, type: 3}
+  m_PrefabInstance: {fileID: 7007100654116788825}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4677462153606422781}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bad1689e0b0840744a2ae2b6691561ed, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  syncDirection: 0
-  syncMode: 0
-  syncInterval: 0.1
-  colorRenderers:
-  - {fileID: 6447348875116185086}
