@@ -405,6 +405,10 @@ PrefabInstance:
       value: 0.9450981
       objectReference: {fileID: 0}
     - target: {fileID: 711960275750789099, guid: 834823851376ca941b23b555857f9b2e, type: 3}
+      propertyPath: onlineScene
+      value: Assets/Scenes/Map 1.unity
+      objectReference: {fileID: 0}
+    - target: {fileID: 711960275750789099, guid: 834823851376ca941b23b555857f9b2e, type: 3}
       propertyPath: unitBasePrefab
       value: 
       objectReference: {fileID: 4677462153606422781, guid: 8b7d4fd9645c7fa4da684a8de998240e, type: 3}

@@ -7,6 +7,7 @@ using UnityEngine;
 public class RTSPlayer : NetworkBehaviour
 {
     private List<Unit> playersUnits = new();
+    [SerializeField] Transform cameraTransform;
     [SerializeField] private List<Building> playerBuildings = new();
     [SerializeField] private List<Building> allBuildableBuildings = new();
     [SerializeField] LayerMask buildingLayerMask = new();
@@ -19,6 +20,7 @@ public class RTSPlayer : NetworkBehaviour
     public List<Building> PlayerBuildings { get => playerBuildings; }
     public int Resources { get => resources; }
     public Color TeamColor { get => teamColor; }
+    public Transform CameraTransform { get => cameraTransform; }
 
     private void Start()
     {
@@ -192,6 +194,11 @@ public class RTSPlayer : NetworkBehaviour
     private void ClientHandleResourceChange(int oldResources, int newResources)
     {
         ClientOnResourceChange?.Invoke(newResources);
+    }
+
+    internal Transform GetCameraTransform()
+    {
+        throw new NotImplementedException();
     }
 
 
