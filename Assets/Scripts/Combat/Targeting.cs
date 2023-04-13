@@ -27,6 +27,7 @@ public class Targeting : NetworkBehaviour
         PointTurretAtTarget();
     }
 
+    [Server]
     private void PointTurretAtTarget()
     {
         if (turret == null) { return; }
@@ -70,6 +71,7 @@ public class Targeting : NetworkBehaviour
     #endregion
 
     #region client
+
 
     #endregion
 }
