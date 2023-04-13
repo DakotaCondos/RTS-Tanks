@@ -17,8 +17,7 @@ public class RTSNetworkManager : NetworkManager
     {
         base.OnServerAddPlayer(conn);
         RTSPlayer rtsPlayer = conn.identity.GetComponent<RTSPlayer>();
-
-        print(conn.connectionId);
+        rtsPlayer.SetTeamNumber(conn.connectionId + 1);
         Color teamColor;
 
         teamColor = conn.connectionId switch

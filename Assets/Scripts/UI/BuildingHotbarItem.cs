@@ -53,6 +53,7 @@ public class BuildingHotbarItem : MonoBehaviour
     private void BlueprintRotation()
     {
         if (!isBuildingPrefab || buildingPreviewInstance == null) { return; }
+        if (!Input.GetKey(KeyCode.LeftShift)) { return; }
         buildingPreviewInstance.transform.Rotate(new Vector3(0, Input.mouseScrollDelta.y * rotationSpeed, 0));
     }
 

@@ -49,7 +49,15 @@ public class CameraController : NetworkBehaviour
         // Movement controls
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
-        transform.Translate(moveSpeed * Time.deltaTime * new Vector3(horizontal, 0f, vertical));
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            transform.Translate(moveSpeed * 3f * Time.deltaTime * new Vector3(horizontal, 0f, vertical));
+        }
+        else
+        {
+            transform.Translate(moveSpeed * Time.deltaTime * new Vector3(horizontal, 0f, vertical));
+
+        }
 
         Vector3 rotationPoint = focalPoint.position;
 
@@ -70,6 +78,7 @@ public class CameraController : NetworkBehaviour
         }
 
         // Zoom controls
+        if (Input.GetKey(KeyCode.LeftShift)) { return; }
         float scroll = Input.mouseScrollDelta.y;
         float newZoomDistance = Mathf.Clamp(zoomDistance + scroll * zoomSpeed, minZoom, maxZoom);
         float zoomDelta = newZoomDistance - zoomDistance;

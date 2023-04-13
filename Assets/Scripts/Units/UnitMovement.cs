@@ -1,15 +1,19 @@
 using Mirror;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
 [RequireComponent(typeof(Targeting), typeof(Targetable), typeof(NavMeshAgent))]
 public class UnitMovement : NetworkBehaviour
 {
+    [Header("Movement Settings")]
+    [SerializeField] float chaseRange;
     NavMeshAgent navMeshAgent;
     Targeting targeting;
     Targetable targetable;
     private Camera mainCamera;
-    [SerializeField] float chaseRange;
+
+
 
     private void Awake()
     {

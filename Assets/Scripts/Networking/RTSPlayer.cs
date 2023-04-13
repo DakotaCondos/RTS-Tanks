@@ -13,6 +13,7 @@ public class RTSPlayer : NetworkBehaviour
     [SerializeField] LayerMask buildingLayerMask = new();
     [SerializeField] float buildingRange = 8f;
     [SerializeField] Color teamColor = new();
+    [SerializeField] int teamNumber;
     [SyncVar(hook = nameof(ClientHandleResourceChange))] int resources = 200;
     public event Action<int> ClientOnResourceChange;
 
@@ -21,6 +22,7 @@ public class RTSPlayer : NetworkBehaviour
     public int Resources { get => resources; }
     public Color TeamColor { get => teamColor; }
     public Transform CameraTransform { get => cameraTransform; }
+    public int TeamNumber { get => teamNumber; }
 
     private void Start()
     {
@@ -122,6 +124,12 @@ public class RTSPlayer : NetworkBehaviour
     public void SetTeamColor(Color newTeamColor)
     {
         teamColor = newTeamColor;
+    }
+
+    [Server]
+    public void SetTeamNumber(int value)
+    {
+        teamNumber = value;
     }
 
     private void ServerHandleUnitSpawned(Unit unit)

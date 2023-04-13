@@ -358,55 +358,55 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 711960275750789099, guid: 834823851376ca941b23b555857f9b2e, type: 3}
       propertyPath: player1.b
-      value: 0.8588236
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 711960275750789099, guid: 834823851376ca941b23b555857f9b2e, type: 3}
       propertyPath: player1.g
-      value: 0.59607846
+      value: 0.5988023
       objectReference: {fileID: 0}
     - target: {fileID: 711960275750789099, guid: 834823851376ca941b23b555857f9b2e, type: 3}
       propertyPath: player1.r
-      value: 0.20392159
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 711960275750789099, guid: 834823851376ca941b23b555857f9b2e, type: 3}
       propertyPath: player2.b
-      value: 0.23529413
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 711960275750789099, guid: 834823851376ca941b23b555857f9b2e, type: 3}
       propertyPath: player2.g
-      value: 0.29803923
+      value: 0.09356727
       objectReference: {fileID: 0}
     - target: {fileID: 711960275750789099, guid: 834823851376ca941b23b555857f9b2e, type: 3}
       propertyPath: player2.r
-      value: 0.9058824
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 711960275750789099, guid: 834823851376ca941b23b555857f9b2e, type: 3}
       propertyPath: player3.b
-      value: 0.4431373
+      value: 0.42405057
       objectReference: {fileID: 0}
     - target: {fileID: 711960275750789099, guid: 834823851376ca941b23b555857f9b2e, type: 3}
       propertyPath: player3.g
-      value: 0.8000001
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 711960275750789099, guid: 834823851376ca941b23b555857f9b2e, type: 3}
       propertyPath: player3.r
-      value: 0.18039216
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 711960275750789099, guid: 834823851376ca941b23b555857f9b2e, type: 3}
       propertyPath: player4.b
-      value: 0.058823533
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 711960275750789099, guid: 834823851376ca941b23b555857f9b2e, type: 3}
       propertyPath: player4.g
-      value: 0.7686275
+      value: 0.80088496
       objectReference: {fileID: 0}
     - target: {fileID: 711960275750789099, guid: 834823851376ca941b23b555857f9b2e, type: 3}
       propertyPath: player4.r
-      value: 0.9450981
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 711960275750789099, guid: 834823851376ca941b23b555857f9b2e, type: 3}
       propertyPath: onlineScene
-      value: Assets/Scenes/Map 1.unity
+      value: Assets/Scenes/Map 0.unity
       objectReference: {fileID: 0}
     - target: {fileID: 711960275750789099, guid: 834823851376ca941b23b555857f9b2e, type: 3}
       propertyPath: unitBasePrefab

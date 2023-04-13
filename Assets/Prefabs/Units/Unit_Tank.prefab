@@ -401,6 +401,10 @@ MonoBehaviour:
   syncDirection: 0
   syncMode: 0
   syncInterval: 0.1
+  turret: {fileID: 9203326287280677125}
+  rotationX: -90
+  rotationY: 0
+  rotationZ: 0
 --- !u!114 &3904569482189672604
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -486,7 +490,13 @@ MonoBehaviour:
   syncInterval: 0.1
   colorRenderers:
   - {fileID: 9203326287278511563}
-  - {fileID: 8124464448390750656}
+  - {fileID: 9203326287278515985}
+  - {fileID: 9203326287278514689}
+  teamMaterials:
+  - {fileID: 2100000, guid: bc9dacb693a94d442aaa776826ab5110, type: 2}
+  - {fileID: 2100000, guid: aa95251444dbdd442bd90f400f438791, type: 2}
+  - {fileID: 2100000, guid: 6788785419fc9014fad78117418af1c6, type: 2}
+  iconRenderer: {fileID: 8124464448390750656}
 --- !u!1 &9203326287280677125
 GameObject:
   m_ObjectHideFlags: 0
@@ -801,6 +811,10 @@ PrefabInstance:
     - target: {fileID: 8840753419615702630, guid: b2a80ea43215d2d48a520263454ac0d8, type: 3}
       propertyPath: m_Mesh
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8840753419615702630, guid: b2a80ea43215d2d48a520263454ac0d8, type: 3}
+      propertyPath: m_VersionIndex
+      value: 1492
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b2a80ea43215d2d48a520263454ac0d8, type: 3}
