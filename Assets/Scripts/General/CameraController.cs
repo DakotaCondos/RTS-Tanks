@@ -73,7 +73,7 @@ public class CameraController : NetworkBehaviour
             minimapBoundsUI = minimapBoundsInstance.GetComponent<UIBlock2D>();
         }
         minimapBoundsInstance.transform.position = hit.point;
-        minimapBoundsUI.Size = new Length3(100, 100, 0);
+        minimapBoundsUI.Size = new Length3((105 - zoomDistance) * boundsMultiplier, (105 - zoomDistance) * boundsMultiplier, 0);
     }
 
     private void UpdateCameraPosition()
