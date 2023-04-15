@@ -121,6 +121,7 @@ MonoBehaviour:
     m_Bits: 321
   buildingRange: 25
   teamColor: {r: 0, g: 0, b: 0, a: 0}
+  teamNumber: 0
 --- !u!114 &7050448443144712454
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -137,7 +138,14 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   playerCameraTransform: {fileID: 4558104195598232486}
-  focalPoint: {fileID: 5152144632836340734}
+  lineColor: {r: 1, g: 0.49694997, b: 0, a: 1}
+  minimapBoundsPrefab: {fileID: 8413346788274722158, guid: 9a934d2162063bb4cbb89b4e7b50ac41, type: 3}
+  boundsMultiplier: 1
+  floorLayer:
+    serializedVersion: 2
+    m_Bits: 1024
+  focalPointMouse: {fileID: 0}
+  focalPointScreenCenter: {fileID: 0}
   moveSpeed: 20
   rotationSpeed: 100
   zoomSpeed: 2

@@ -1,15 +1,22 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Cinemachine;
 using Mirror;
+using Nova;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class CameraController : NetworkBehaviour
 {
     [SerializeField] private Transform playerCameraTransform = null;
+    [SerializeField] Color lineColor;
+    [SerializeField] UIBlock2D minimapBoundsPrefab;
+    [SerializeField] float boundsMultiplier = 1;
+    public LayerMask floorLayer; // The layer mask for the floor objects
 
-    public Transform focalPoint; // The object to rotate around
+    public Transform focalPointMouse; // The object to rotate around
+    public Transform focalPointScreenCenter; // The Screen centers transform
     public float moveSpeed = 10f; // The speed at which the camera moves
     public float rotationSpeed = 100f; // The speed at which the camera rotates
     public float zoomSpeed = 10f; // The speed at which the camera zooms
@@ -22,16 +29,24 @@ public class CameraController : NetworkBehaviour
     public CinemachineVirtualCamera virtualCamera;
     Camera mainCamera;
 
+    Vector3 rotationPoint = Vector3.zero;
+    Vector3 centerScreen = Vector3.zero;
+    GameObject minimapBoundsInstance = null;
+    UIBlock2D minimapBoundsUI = null;
+
     public override void OnStartAuthority()
     {
         playerCameraTransform.gameObject.SetActive(true);
-        if (focalPoint == null)
+        if (focalPointMouse == null)
         {
-            Debug.LogError("No focal point assigned to CameraController!");
-            return;
+            focalPointMouse = Instantiate(new GameObject()).transform;
+        }
+        if (focalPointScreenCenter == null)
+        {
+            focalPointScreenCenter = Instantiate(new GameObject()).transform;
         }
 
-        virtualCamera.LookAt = focalPoint;
+        virtualCamera.LookAt = focalPointMouse;
         virtualCamera.Follow = transform;
         mainCamera = Camera.main;
     }
@@ -42,6 +57,23 @@ public class CameraController : NetworkBehaviour
         if (!isOwned || !Application.isFocused) { return; }
 
         UpdateCameraPosition();
+        UpdateMinimapViewBounds();
+    }
+
+    private void UpdateMinimapViewBounds()
+    {
+        centerScreen = new Vector3(Screen.width / 2f, Screen.height / 2f, 0f);
+        if (Physics.Raycast(mainCamera.ScreenPointToRay(centerScreen), out RaycastHit hit, 1500f, floorLayer))
+        {
+            focalPointScreenCenter.position = hit.point;
+        }
+        if (minimapBoundsInstance == null)
+        {
+            minimapBoundsInstance = Instantiate(minimapBoundsPrefab.gameObject);
+            minimapBoundsUI = minimapBoundsInstance.GetComponent<UIBlock2D>();
+        }
+        minimapBoundsInstance.transform.position = hit.point;
+        minimapBoundsUI.Size = new Length3(100, 100, 0);
     }
 
     private void UpdateCameraPosition()
@@ -58,8 +90,6 @@ public class CameraController : NetworkBehaviour
             transform.Translate(moveSpeed * Time.deltaTime * new Vector3(horizontal, 0f, vertical));
 
         }
-
-        Vector3 rotationPoint = focalPoint.position;
 
         if (Physics.Raycast(mainCamera.ScreenPointToRay(Input.mousePosition), out RaycastHit hit, 1500f))
         {
@@ -84,6 +114,5 @@ public class CameraController : NetworkBehaviour
         float zoomDelta = newZoomDistance - zoomDistance;
         zoomDistance = newZoomDistance;
         transform.position += zoomDelta * virtualCamera.transform.forward;
-
     }
 }
