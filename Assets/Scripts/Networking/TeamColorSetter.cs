@@ -34,9 +34,12 @@ public class TeamColorSetter : NetworkBehaviour
 
     private void HandleTeamColorUpdated(Color oldColor, Color newColor)
     {
-        iconRenderer.material.color = newColor;
-
+        Material material = iconRenderer.material;
+        material.color = newColor;
+        float emissionIntensity = 2f;
+        material.SetColor("_EmissionColor", newColor * emissionIntensity);
         if (teamNumber <= 3) { return; }
+
         foreach (var item in colorRenderers)
         {
             item.material.color = newColor;

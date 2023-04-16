@@ -927,5 +927,5 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   timeToLive: 5
-  launchForce: 25
-  projectileDamage: 25
+  launchForce: 150
+  projectileDamage: 15

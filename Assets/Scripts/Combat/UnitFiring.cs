@@ -8,7 +8,7 @@ public class UnitFiring : NetworkBehaviour
     [SerializeField] GameObject projectilePrefab;
     [SerializeField] Transform projectileSpawnPoint;
     [SerializeField] float shootingRange = 5f;
-    [SerializeField] float shotsPerSecond = 1f;
+    [SerializeField] float shotsPerSecond = .2f;
     [SerializeField] float rotationSpeed = 20f;
 
     private float lastShotTime;
