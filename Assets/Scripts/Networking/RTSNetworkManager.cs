@@ -1,5 +1,6 @@
 using Mirror;
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -11,6 +12,7 @@ public class RTSNetworkManager : NetworkManager
     [SerializeField] Color player2;
     [SerializeField] Color player3;
     [SerializeField] Color player4;
+    public List<RTSPlayer> rtsPlayers { get; } = new();
 
 
     public override void OnServerAddPlayer(NetworkConnectionToClient conn)
@@ -34,8 +36,12 @@ public class RTSNetworkManager : NetworkManager
 
         rtsPlayer.SetTeamColor(teamColor);
 
-        GameObject unitSpawner = Instantiate(unitBasePrefab, conn.identity.transform.position, conn.identity.transform.rotation);
-        NetworkServer.Spawn(unitSpawner, conn);
+
+        {
+            Debug.LogError("Move This");
+            GameObject unitSpawner = Instantiate(unitBasePrefab, conn.identity.transform.position, conn.identity.transform.rotation);
+            NetworkServer.Spawn(unitSpawner, conn);
+        }
     }
 
     public override void OnServerSceneChanged(string sceneName)
