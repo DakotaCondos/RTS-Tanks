@@ -14,6 +14,20 @@ public class RTSNetworkManager : NetworkManager
     [SerializeField] Color player4;
     public List<RTSPlayer> rtsPlayers { get; } = new();
 
+    public static event Action ClientOnConnected;
+    public static event Action ClientOnDisconnected;
+
+    public override void OnClientConnect()
+    {
+        base.OnClientConnect();
+        ClientOnConnected?.Invoke();
+    }
+
+    public override void OnClientDisconnect()
+    {
+        base.OnClientDisconnect();
+        ClientOnDisconnected?.Invoke();
+    }
 
     public override void OnServerAddPlayer(NetworkConnectionToClient conn)
     {
@@ -38,9 +52,9 @@ public class RTSNetworkManager : NetworkManager
 
 
         {
-            Debug.LogError("Move This");
-            GameObject unitSpawner = Instantiate(unitBasePrefab, conn.identity.transform.position, conn.identity.transform.rotation);
-            NetworkServer.Spawn(unitSpawner, conn);
+            Debug.LogWarning("Move This");
+            //GameObject unitSpawner = Instantiate(unitBasePrefab, conn.identity.transform.position, conn.identity.transform.rotation);
+            //NetworkServer.Spawn(unitSpawner, conn);
         }
     }
 

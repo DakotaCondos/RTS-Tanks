@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 711960275750789096}
   - component: {fileID: 711960275750789099}
   - component: {fileID: 711960275750789098}
-  - component: {fileID: 711960275750789097}
   m_Layer: 0
   m_Name: NetworkManager
   m_TagString: Untagged
@@ -97,17 +96,3 @@ MonoBehaviour:
   clientMaxReceivesPerTick: 1000
   clientSendQueueLimit: 10000
   clientReceiveQueueLimit: 10000
---- !u!114 &711960275750789097
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 711960275750789076}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6442dc8070ceb41f094e44de0bf87274, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  offsetX: 0
-  offsetY: 0

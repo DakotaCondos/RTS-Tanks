@@ -49,8 +49,7 @@ public class MainMenu : MonoBehaviour
 
     public void HostLobby()
     {
-        lobbyPanel.enabled = true;
-
         NetworkManager.singleton.StartHost();
+        //ShowLobbyPanel();
     }
 }
