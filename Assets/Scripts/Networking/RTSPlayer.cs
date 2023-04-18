@@ -15,7 +15,11 @@ public class RTSPlayer : NetworkBehaviour
     [SerializeField] Color teamColor = new();
     [SerializeField] int teamNumber;
     [SyncVar(hook = nameof(ClientHandleResourceChange))] int resources = 200;
+    [SyncVar(hook = nameof(AuthorityHandlePartyOwnerStateUpdated))]
+    private bool isPartyOwner = false;
+
     public event Action<int> ClientOnResourceChange;
+    public static event Action<bool> AuthorityOnPartyOwnerStateUpdated;
 
     public List<Unit> PlayersUnits { get => playersUnits; }
     public List<Building> PlayerBuildings { get => playerBuildings; }
@@ -23,6 +27,7 @@ public class RTSPlayer : NetworkBehaviour
     public Color TeamColor { get => teamColor; }
     public Transform CameraTransform { get => cameraTransform; }
     public int TeamNumber { get => teamNumber; }
+    public bool IsPartyOwner { get => isPartyOwner; }
 
     private void Start()
     {
@@ -114,6 +119,13 @@ public class RTSPlayer : NetworkBehaviour
         ModifyResources(-buildingToPlace.Price);
     }
 
+    [Command]
+    public void CmdStartGame()
+    {
+        if (!isPartyOwner) { return; }
+        ((RTSNetworkManager)NetworkManager.singleton).StartGame();
+    }
+
     [Server]
     public void ModifyResources(int difference)
     {
@@ -130,6 +142,12 @@ public class RTSPlayer : NetworkBehaviour
     public void SetTeamNumber(int value)
     {
         teamNumber = value;
+    }
+
+    [Server]
+    public void SetPartyOwner(bool value)
+    {
+        isPartyOwner = value;
     }
 
     private void ServerHandleUnitSpawned(Unit unit)
@@ -170,9 +188,20 @@ public class RTSPlayer : NetworkBehaviour
 
 
     }
+    public override void OnStartClient()
+    {
+        if (NetworkServer.active) { return; }
+        ((RTSNetworkManager)NetworkManager.singleton).RtsPlayers.Add(this);
+    }
+
     public override void OnStopClient()
     {
-        if (!isClientOnly || !isOwned) { return; }
+        if (!isClientOnly) { return; }
+
+        ((RTSNetworkManager)NetworkManager.singleton).RtsPlayers.Remove(this);
+
+        if (!isOwned) { return; }
+
         Unit.AuthorityOnUnitDespawned -= AuthorityHandleUnitSpawned;
         Unit.AuthorityOnUnitDespawned -= AuthorityHandleUnitDespawned;
         Building.AuthorityOnBuildingSpawned -= AuthorityHandleBuildingSpawned;
@@ -199,20 +228,16 @@ public class RTSPlayer : NetworkBehaviour
         playersUnits.Remove(unit);
     }
 
+    private void AuthorityHandlePartyOwnerStateUpdated(bool oldValue, bool newValue)
+    {
+        if (!isOwned) { return; }
+        AuthorityOnPartyOwnerStateUpdated?.Invoke(newValue);
+    }
+
     private void ClientHandleResourceChange(int oldResources, int newResources)
     {
         ClientOnResourceChange?.Invoke(newResources);
     }
-
-    internal Transform GetCameraTransform()
-    {
-        throw new NotImplementedException();
-    }
-
-
-
-
-
 
     #endregion
 

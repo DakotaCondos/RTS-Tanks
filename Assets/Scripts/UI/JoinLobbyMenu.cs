@@ -8,18 +8,19 @@ using UnityEngine.SceneManagement;
 
 public class JoinLobbyMenu : MonoBehaviour
 {
+    [SerializeField] GameObject startGameButton;
     private void OnEnable()
     {
         RTSNetworkManager.ClientOnConnected += HandleClientConnected;
+        RTSPlayer.AuthorityOnPartyOwnerStateUpdated += AuthorityHandlePartyStateUpdated;
     }
+
+
+
     private void OnDisable()
     {
         RTSNetworkManager.ClientOnConnected -= HandleClientConnected;
-    }
-
-    private void HandleClientConnected()
-    {
-        Debug.LogWarning($"{nameof(HandleClientConnected)} called from {name} is not yet implemented");
+        RTSPlayer.AuthorityOnPartyOwnerStateUpdated -= AuthorityHandlePartyStateUpdated;
     }
 
     public void LeaveLobby()
@@ -33,5 +34,20 @@ public class JoinLobbyMenu : MonoBehaviour
             NetworkManager.singleton.StopClient();
             SceneManager.LoadScene("MainMenu");
         }
+    }
+
+    public void StartGame()
+    {
+        NetworkClient.connection.identity.GetComponent<RTSPlayer>().CmdStartGame();
+    }
+
+    private void HandleClientConnected()
+    {
+        Debug.LogWarning($"{nameof(HandleClientConnected)} called from {name} is not yet implemented");
+    }
+
+    private void AuthorityHandlePartyStateUpdated(bool value)
+    {
+        startGameButton.SetActive(value);
     }
 }

@@ -12,21 +12,39 @@ public class RTSNetworkManager : NetworkManager
     [SerializeField] Color player2;
     [SerializeField] Color player3;
     [SerializeField] Color player4;
-    public List<RTSPlayer> rtsPlayers { get; } = new();
+    public List<RTSPlayer> RtsPlayers { get; } = new();
+    private bool isGameInProgress = false;
 
     public static event Action ClientOnConnected;
     public static event Action ClientOnDisconnected;
 
-    public override void OnClientConnect()
+
+    #region Server
+    public override void OnServerConnect(NetworkConnectionToClient conn)
     {
-        base.OnClientConnect();
-        ClientOnConnected?.Invoke();
+        if (isGameInProgress)
+        {
+            conn.Disconnect();
+        }
     }
 
-    public override void OnClientDisconnect()
+    public override void OnServerDisconnect(NetworkConnectionToClient conn)
     {
-        base.OnClientDisconnect();
-        ClientOnDisconnected?.Invoke();
+        RtsPlayers.Remove(conn.identity.GetComponent<RTSPlayer>());
+        base.OnServerDisconnect(conn);
+    }
+
+    public override void OnStopServer()
+    {
+        RtsPlayers.Clear();
+        isGameInProgress = false;
+    }
+
+    public void StartGame()
+    {
+        if (RtsPlayers.Count < 2) { return; }
+        isGameInProgress = true;
+        ServerChangeScene("Map 1");
     }
 
     public override void OnServerAddPlayer(NetworkConnectionToClient conn)
@@ -49,12 +67,12 @@ public class RTSNetworkManager : NetworkManager
         };
 
         rtsPlayer.SetTeamColor(teamColor);
-
+        RtsPlayers.Add(rtsPlayer);
+        rtsPlayer.SetPartyOwner(RtsPlayers.Count == 1);
 
         {
             Debug.LogWarning("Move This");
-            //GameObject unitSpawner = Instantiate(unitBasePrefab, conn.identity.transform.position, conn.identity.transform.rotation);
-            //NetworkServer.Spawn(unitSpawner, conn);
+
         }
     }
 
@@ -66,6 +84,33 @@ public class RTSNetworkManager : NetworkManager
         {
             GameObject gameOverHandlerInstance = Instantiate(gameOverHandlerPrefab);
             NetworkServer.Spawn(gameOverHandlerInstance);
+            foreach (var item in RtsPlayers)
+            {
+                GameObject unitSpawner = Instantiate(unitBasePrefab, item.transform.position, item.transform.rotation);
+                NetworkServer.Spawn(unitSpawner, item.connectionToClient);
+            }
         }
     }
+    #endregion
+
+
+    #region Client
+    public override void OnClientConnect()
+    {
+        base.OnClientConnect();
+        ClientOnConnected?.Invoke();
+    }
+
+    public override void OnClientDisconnect()
+    {
+        base.OnClientDisconnect();
+        ClientOnDisconnected?.Invoke();
+    }
+
+
+    public override void OnStopClient()
+    {
+        RtsPlayers.Clear();
+    }
+    #endregion
 }
