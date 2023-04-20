@@ -11,9 +11,14 @@ public class ResourceUI : MonoBehaviour
 
     private RTSPlayer rtsPlayer;
 
-    private void Update()
+    private void Start()
     {
         ActiveRTSPlayer();
+
+    }
+
+    private void Update()
+    {
     }
 
     private void ActiveRTSPlayer()

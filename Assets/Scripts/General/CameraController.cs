@@ -15,8 +15,8 @@ public class CameraController : NetworkBehaviour
     [SerializeField] float boundsMultiplier = 1;
     public LayerMask floorLayer; // The layer mask for the floor objects
 
-    public Transform focalPointMouse; // The object to rotate around
-    public Transform focalPointScreenCenter; // The Screen centers transform
+    public Vector3 focalPointMouse;
+    public Vector3 focalPointScreenCenter;
     public float moveSpeed = 10f; // The speed at which the camera moves
     public float rotationSpeed = 100f; // The speed at which the camera rotates
     public float zoomSpeed = 10f; // The speed at which the camera zooms
@@ -39,14 +39,14 @@ public class CameraController : NetworkBehaviour
         playerCameraTransform.gameObject.SetActive(true);
         if (focalPointMouse == null)
         {
-            focalPointMouse = Instantiate(new GameObject()).transform;
+            focalPointMouse = Vector3.zero;
         }
         if (focalPointScreenCenter == null)
         {
-            focalPointScreenCenter = Instantiate(new GameObject()).transform;
+            focalPointScreenCenter = Vector3.zero;
         }
 
-        virtualCamera.LookAt = focalPointMouse;
+        virtualCamera.LookAt = transform;
         virtualCamera.Follow = transform;
         mainCamera = Camera.main;
     }
@@ -55,7 +55,7 @@ public class CameraController : NetworkBehaviour
     private void Update()
     {
         if (!isOwned || !Application.isFocused) { return; }
-
+        if (mainCamera == null) { mainCamera = Camera.main; }
         UpdateCameraPosition();
         UpdateMinimapViewBounds();
     }
@@ -65,7 +65,7 @@ public class CameraController : NetworkBehaviour
         centerScreen = new Vector3(Screen.width / 2f, Screen.height / 2f, 0f);
         if (Physics.Raycast(mainCamera.ScreenPointToRay(centerScreen), out RaycastHit hit, 1500f, floorLayer))
         {
-            focalPointScreenCenter.position = hit.point;
+            focalPointScreenCenter = hit.point;
         }
         if (minimapBoundsInstance == null)
         {

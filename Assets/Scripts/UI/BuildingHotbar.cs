@@ -17,10 +17,14 @@ public class BuildingHotbar : MonoBehaviour
     {
         currentHotbarItems = new();
     }
+    private void Start()
+    {
+        ActiveRTSPlayer();
+
+    }
 
     private void Update()
     {
-        ActiveRTSPlayer();
     }
 
     public void AddItemToHotbar(Building building)

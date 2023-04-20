@@ -33,16 +33,16 @@ public class BuildingHotbarItem : MonoBehaviour
     private void Start()
     {
         buildingCollider = buildingPrefab.GetComponent<BoxCollider>();
-
+        if (rtsPlayer == null)
+        {
+            rtsPlayer = NetworkClient.connection.identity.GetComponent<RTSPlayer>();
+        }
     }
 
 
     private void Update()
     {
-        if (rtsPlayer == null)
-        {
-            rtsPlayer = NetworkClient.connection.identity.GetComponent<RTSPlayer>();
-        }
+        
 
         Placement();
         BlueprintRotation();

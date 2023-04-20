@@ -18,6 +18,8 @@ public class UnitSelectionHandler : MonoBehaviour
         mainCamera = Camera.main;
         Unit.AuthorityOnUnitDespawned += AuthorityHandleUnitDespawned;
         GameOverHandler.ClientOnGameOver += ClientHandleGameOver;
+        ActiveRTSPlayer();
+
     }
 
 
@@ -31,7 +33,6 @@ public class UnitSelectionHandler : MonoBehaviour
 
     private void Update()
     {
-        ActiveRTSPlayer();
 
         if (Mouse.current.leftButton.wasPressedThisFrame)
         {

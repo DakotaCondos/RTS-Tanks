@@ -76,6 +76,8 @@ public class RTSPlayer : NetworkBehaviour
         Unit.ServerOnUnitDespawned += ServerHandleUnitDespawned;
         Building.ServerOnBuildingSpawned += ServerHandleBuildingSpawned;
         Building.ServerOnBuildingDespawned += ServerHandleBuildingDespawned;
+
+        DontDestroyOnLoad(gameObject);
     }
 
     public override void OnStopServer()
@@ -192,6 +194,8 @@ public class RTSPlayer : NetworkBehaviour
     {
         if (NetworkServer.active) { return; }
         ((RTSNetworkManager)NetworkManager.singleton).RtsPlayers.Add(this);
+
+        DontDestroyOnLoad(gameObject);
     }
 
     public override void OnStopClient()
