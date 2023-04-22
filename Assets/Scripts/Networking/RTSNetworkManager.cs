@@ -68,7 +68,7 @@ public class RTSNetworkManager : NetworkManager
 
         rtsPlayer.SetTeamColor(teamColor);
         RtsPlayers.Add(rtsPlayer);
-        rtsPlayer.SetPartyOwner(RtsPlayers.Count == 1);
+        rtsPlayer.SetPartyOwner(RtsPlayers.Count == 1); // if first player => party owner
 
         {
             Debug.LogWarning("Move This");
@@ -84,10 +84,14 @@ public class RTSNetworkManager : NetworkManager
         {
             GameObject gameOverHandlerInstance = Instantiate(gameOverHandlerPrefab);
             NetworkServer.Spawn(gameOverHandlerInstance);
-            foreach (var item in RtsPlayers)
+            foreach (var player in RtsPlayers)
             {
-                GameObject unitSpawner = Instantiate(unitBasePrefab, item.transform.position, item.transform.rotation);
-                NetworkServer.Spawn(unitSpawner, item.connectionToClient);
+                //needs to be instantiated at each start position
+                //update the rts players position to their start positions
+                Transform start = GetStartPosition();
+                player.transform.SetPositionAndRotation(start.position, start.rotation);
+                GameObject unitSpawner = Instantiate(unitBasePrefab, start.position, start.rotation);
+                NetworkServer.Spawn(unitSpawner, player.connectionToClient);
             }
         }
     }

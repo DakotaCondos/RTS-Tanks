@@ -62,18 +62,20 @@ public class CameraController : NetworkBehaviour
 
     private void UpdateMinimapViewBounds()
     {
-        centerScreen = new Vector3(Screen.width / 2f, Screen.height / 2f, 0f);
-        if (Physics.Raycast(mainCamera.ScreenPointToRay(centerScreen), out RaycastHit hit, 1500f, floorLayer))
-        {
-            focalPointScreenCenter = hit.point;
-        }
         if (minimapBoundsInstance == null)
         {
             minimapBoundsInstance = Instantiate(minimapBoundsPrefab.gameObject);
             minimapBoundsUI = minimapBoundsInstance.GetComponent<UIBlock2D>();
         }
-        minimapBoundsInstance.transform.position = hit.point;
-        minimapBoundsUI.Size = new Length3((105 - zoomDistance) * boundsMultiplier, (105 - zoomDistance) * boundsMultiplier, 0);
+
+        centerScreen = new Vector3(Screen.width / 2f, Screen.height / 2f, 0f);
+        if (Physics.Raycast(mainCamera.ScreenPointToRay(centerScreen), out RaycastHit hit, 1500f, floorLayer))
+        {
+            focalPointScreenCenter = hit.point;
+            minimapBoundsInstance.transform.position = hit.point;
+            minimapBoundsUI.Size = new Length3((105 - zoomDistance) * boundsMultiplier, (105 - zoomDistance) * boundsMultiplier, 0);
+        }
+
     }
 
     private void UpdateCameraPosition()
