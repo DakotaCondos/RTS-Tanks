@@ -1091,7 +1091,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &131184137
 Transform:
   m_ObjectHideFlags: 0
@@ -1382,6 +1382,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startGameButton: {fileID: 4884181065049977708}
+  playerNameTextBlocks:
+  - {fileID: 560443150}
+  - {fileID: 1571700961}
+  - {fileID: 34652072}
+  - {fileID: 932153523}
 --- !u!1 &235751331
 GameObject:
   m_ObjectHideFlags: 0
@@ -7551,7 +7556,7 @@ GameObject:
   - component: {fileID: 829642553}
   - component: {fileID: 829642552}
   m_Layer: 0
-  m_Name: Player2
+  m_Name: Player3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9995,7 +10000,7 @@ GameObject:
   - component: {fileID: 1569752119}
   - component: {fileID: 1569752118}
   m_Layer: 0
-  m_Name: Player3
+  m_Name: Player2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

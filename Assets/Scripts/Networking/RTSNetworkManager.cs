@@ -1,6 +1,7 @@
 using Mirror;
 using System;
 using System.Collections.Generic;
+using System.Text;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -12,12 +13,25 @@ public class RTSNetworkManager : NetworkManager
     [SerializeField] Color player2;
     [SerializeField] Color player3;
     [SerializeField] Color player4;
+
     public List<RTSPlayer> RtsPlayers { get; } = new();
     private bool isGameInProgress = false;
 
     public static event Action ClientOnConnected;
     public static event Action ClientOnDisconnected;
 
+    #region Debug
+    [ContextMenu("ShowPlayers")]
+    void DoSomething()
+    {
+        StringBuilder players = new StringBuilder();
+        foreach (var item in RtsPlayers)
+        {
+            players.AppendLine(item.Displayname);
+        }
+        Debug.LogWarning(players.ToString());
+    }
+    #endregion
 
     #region Server
     public override void OnServerConnect(NetworkConnectionToClient conn)
@@ -68,6 +82,7 @@ public class RTSNetworkManager : NetworkManager
 
         rtsPlayer.SetTeamColor(teamColor);
         RtsPlayers.Add(rtsPlayer);
+        rtsPlayer.SetDisplayName($"Player {RtsPlayers.Count}");
         rtsPlayer.SetPartyOwner(RtsPlayers.Count == 1); // if first player => party owner
 
         {

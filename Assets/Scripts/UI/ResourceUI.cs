@@ -33,8 +33,9 @@ public class ResourceUI : MonoBehaviour
                 rtsPlayer.ClientOnResourceChange += ClientHandleResourcesChanged;
             }
         }
-        catch (NullReferenceException)
+        catch (NullReferenceException e)
         {
+            Debug.LogError(e.Message + "occoured in ActiveRTSPlayer of ResourceGenerator.cs");
             return;
         }
     }

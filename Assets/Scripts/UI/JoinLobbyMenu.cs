@@ -9,10 +9,16 @@ using UnityEngine.SceneManagement;
 public class JoinLobbyMenu : MonoBehaviour
 {
     [SerializeField] GameObject startGameButton;
+    [SerializeField] TextBlock[] playerNameTextBlocks;
+    [SerializeField] bool showStartButton = false;
+    [SerializeField] bool initialInfoCheckCompleted = false;
     private void OnEnable()
     {
         RTSNetworkManager.ClientOnConnected += HandleClientConnected;
         RTSPlayer.AuthorityOnPartyOwnerStateUpdated += AuthorityHandlePartyStateUpdated;
+        RTSPlayer.ClientOnInfoUpdated += ClientHandleInfoUpdated;
+
+        startGameButton.SetActive(false);
     }
 
 
@@ -21,6 +27,7 @@ public class JoinLobbyMenu : MonoBehaviour
     {
         RTSNetworkManager.ClientOnConnected -= HandleClientConnected;
         RTSPlayer.AuthorityOnPartyOwnerStateUpdated -= AuthorityHandlePartyStateUpdated;
+        RTSPlayer.ClientOnInfoUpdated -= ClientHandleInfoUpdated;
     }
 
     public void LeaveLobby()
@@ -48,6 +55,32 @@ public class JoinLobbyMenu : MonoBehaviour
 
     private void AuthorityHandlePartyStateUpdated(bool value)
     {
-        startGameButton.SetActive(value);
+        print($"Setting showStartButton = {value}");
+        showStartButton = value;
+        ClientHandleInfoUpdated();
+    }
+
+    private void ClientHandleInfoUpdated()
+    {
+        List<RTSPlayer> players = ((RTSNetworkManager)NetworkManager.singleton).RtsPlayers;
+        print($"player count = {players.Count}");
+        if (initialInfoCheckCompleted && players.Count == 0)
+        {
+            SceneManager.LoadScene("MainMenu");
+        }
+
+
+        for (int i = 0; i < players.Count; i++)
+        {
+            playerNameTextBlocks[i].Text = players[i].Displayname;
+        }
+        for (int i = players.Count; i < playerNameTextBlocks.Length; i++)
+        {
+            playerNameTextBlocks[i].Text = "Waiting for player...";
+        }
+
+        startGameButton.SetActive(showStartButton && players.Count > 1);
+        initialInfoCheckCompleted = true;
+
     }
 }

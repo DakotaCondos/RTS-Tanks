@@ -14,12 +14,17 @@ public class RTSPlayer : NetworkBehaviour
     [SerializeField] float buildingRange = 8f;
     [SerializeField] Color teamColor = new();
     [SerializeField] int teamNumber;
-    [SyncVar(hook = nameof(ClientHandleResourceChange))] int resources = 200;
+    [SyncVar(hook = nameof(ClientHandleResourceChange))]
+    int resources = 200;
     [SyncVar(hook = nameof(AuthorityHandlePartyOwnerStateUpdated))]
     private bool isPartyOwner = false;
 
+    [SyncVar(hook = nameof(ClientHandleDisplayNameUpdated))]
+    private string displayname;
+
     public event Action<int> ClientOnResourceChange;
     public static event Action<bool> AuthorityOnPartyOwnerStateUpdated;
+    public static event Action ClientOnInfoUpdated;
 
     public List<Unit> PlayersUnits { get => playersUnits; }
     public List<Building> PlayerBuildings { get => playerBuildings; }
@@ -28,6 +33,7 @@ public class RTSPlayer : NetworkBehaviour
     public Transform CameraTransform { get => cameraTransform; }
     public int TeamNumber { get => teamNumber; }
     public bool IsPartyOwner { get => isPartyOwner; }
+    public string Displayname { get => displayname; }
 
     private void Start()
     {
@@ -152,6 +158,12 @@ public class RTSPlayer : NetworkBehaviour
         isPartyOwner = value;
     }
 
+    [Server]
+    public void SetDisplayName(string value)
+    {
+        displayname = value;
+    }
+
     private void ServerHandleUnitSpawned(Unit unit)
     {
         if (unit.connectionToClient.connectionId != connectionToClient.connectionId) { return; }
@@ -200,6 +212,8 @@ public class RTSPlayer : NetworkBehaviour
 
     public override void OnStopClient()
     {
+        ClientOnInfoUpdated?.Invoke();
+
         if (!isClientOnly) { return; }
 
         ((RTSNetworkManager)NetworkManager.singleton).RtsPlayers.Remove(this);
@@ -241,6 +255,11 @@ public class RTSPlayer : NetworkBehaviour
     private void ClientHandleResourceChange(int oldResources, int newResources)
     {
         ClientOnResourceChange?.Invoke(newResources);
+    }
+
+    private void ClientHandleDisplayNameUpdated(string oldName, string newName)
+    {
+        ClientOnInfoUpdated?.Invoke();
     }
 
     #endregion
