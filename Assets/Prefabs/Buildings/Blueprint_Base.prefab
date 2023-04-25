@@ -60,7 +60,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   onCollisionColor: {r: 0.5019608, g: 0, b: 0, a: 0.34901962}
-  onNoCollisionColor: {r: 0, g: 0, b: 0.5019608, a: 0.34901962}
+  onNoCollisionColor: {r: 0.5019608, g: 0.5019608, b: 0.5019608, a: 0.34901962}
   renderers: []
   blueprintMaterial: {fileID: 2100000, guid: 951e14b43756ce44cb18161d277f0cae, type: 2}
 --- !u!1 &8556395302980198189

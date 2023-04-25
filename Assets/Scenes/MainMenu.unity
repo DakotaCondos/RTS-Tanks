@@ -14056,6 +14056,10 @@ PrefabInstance:
       propertyPath: transport
       value: 
       objectReference: {fileID: 2048661809}
+    - target: {fileID: 711960275750789099, guid: 834823851376ca941b23b555857f9b2e, type: 3}
+      propertyPath: maxConnections
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 7063020173322873502, guid: 834823851376ca941b23b555857f9b2e, type: 3}
       propertyPath: m_Enabled
       value: 0

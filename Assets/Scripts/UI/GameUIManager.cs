@@ -23,6 +23,27 @@ public class GameUIManager : MonoBehaviour
         currentActiveUI = buildingUI;
     }
 
+    private void Update()
+    {
+        if (currentActiveUI == null) { return; }
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (currentActiveUI == gameOverUI) { return; }
+
+            if (currentActiveUI == buildingUI)
+            {
+                ShowPauseMenu();
+                return;
+            }
+
+            if (currentActiveUI == pauseMenuUI)
+            {
+                ShowBuildMenu();
+                return;
+            }
+        }
+    }
+
     private void Start()
     {
         ShowBuildMenu();
@@ -34,18 +55,21 @@ public class GameUIManager : MonoBehaviour
         {
             item.SetActive(false);
         }
+        currentActiveUI = null;
     }
 
     public void ShowGameOverDisplay()
     {
         HideAllUI();
         gameOverUI.SetActive(true);
+        currentActiveUI = gameOverUI;
     }
 
     public void ShowPauseMenu()
     {
         HideAllUI();
         pauseMenuUI.SetActive(true);
+        currentActiveUI = pauseMenuUI;
     }
 
     public void ShowBuildMenu()

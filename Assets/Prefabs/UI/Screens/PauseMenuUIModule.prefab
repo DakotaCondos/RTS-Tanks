@@ -201,6 +201,18 @@ MonoBehaviour:
     ReverseOrder: 0
     alignment: -1
     Offset: 0
+    Cross:
+      Axis: 0
+      Spacing:
+        Raw: 0
+        Type: 0
+      SpacingMinMax:
+        Min: 0
+        Max: Infinity
+      AutoSpace: 0
+      ReverseOrder: 0
+      alignment: -1
+      ExpandToGrid: 0
   visibility:
     ZIndex: 0
     BlockType: 1
@@ -481,6 +493,18 @@ MonoBehaviour:
     ReverseOrder: 0
     alignment: -1
     Offset: 0
+    Cross:
+      Axis: 0
+      Spacing:
+        Raw: 0
+        Type: 0
+      SpacingMinMax:
+        Min: 0
+        Max: Infinity
+      AutoSpace: 0
+      ReverseOrder: 0
+      alignment: -1
+      ExpandToGrid: 0
   visibility:
     ZIndex: 0
     BlockType: 1
@@ -766,6 +790,18 @@ MonoBehaviour:
     ReverseOrder: 0
     alignment: -1
     Offset: 0
+    Cross:
+      Axis: 0
+      Spacing:
+        Raw: 0
+        Type: 0
+      SpacingMinMax:
+        Min: 0
+        Max: Infinity
+      AutoSpace: 0
+      ReverseOrder: 0
+      alignment: -1
+      ExpandToGrid: 0
   visibility:
     ZIndex: 0
     BlockType: 1
@@ -944,7 +980,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   OnClicked:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 182322267779841938}
+        m_TargetAssemblyTypeName: GameSceneControls, Assembly-CSharp
+        m_MethodName: MainMenu
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &2364967970341315516
 GameObject:
   m_ObjectHideFlags: 0
@@ -956,6 +1004,7 @@ GameObject:
   - component: {fileID: 2364967970341315519}
   - component: {fileID: 2364967970341315518}
   - component: {fileID: 2364967970341315517}
+  - component: {fileID: 182322267779841938}
   m_Layer: 0
   m_Name: PauseMenuUIModule
   m_TagString: Untagged
@@ -1145,6 +1194,18 @@ MonoBehaviour:
     ReverseOrder: 0
     alignment: -1
     Offset: 0
+    Cross:
+      Axis: 0
+      Spacing:
+        Raw: 0
+        Type: 0
+      SpacingMinMax:
+        Min: 0
+        Max: Infinity
+      AutoSpace: 0
+      ReverseOrder: 0
+      alignment: -1
+      ExpandToGrid: 0
   visibility:
     ZIndex: 0
     BlockType: 1
@@ -1226,6 +1287,18 @@ MonoBehaviour:
     FillEnabled: 1
   texture: {fileID: 0}
   sprite: {fileID: 0}
+--- !u!114 &182322267779841938
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2364967970341315516}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94a4bc0b77691b04dbb7aa130f7d2c6c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2561140094662063001
 GameObject:
   m_ObjectHideFlags: 0
@@ -1474,6 +1547,18 @@ MonoBehaviour:
     ReverseOrder: 0
     alignment: -1
     Offset: 0
+    Cross:
+      Axis: 0
+      Spacing:
+        Raw: 0
+        Type: 0
+      SpacingMinMax:
+        Min: 0
+        Max: Infinity
+      AutoSpace: 0
+      ReverseOrder: 0
+      alignment: -1
+      ExpandToGrid: 0
   visibility:
     ZIndex: 0
     BlockType: 2
@@ -1782,6 +1867,18 @@ MonoBehaviour:
     ReverseOrder: 0
     alignment: -1
     Offset: 0
+    Cross:
+      Axis: 0
+      Spacing:
+        Raw: 0
+        Type: 0
+      SpacingMinMax:
+        Min: 0
+        Max: Infinity
+      AutoSpace: 0
+      ReverseOrder: 0
+      alignment: -1
+      ExpandToGrid: 0
   visibility:
     ZIndex: 0
     BlockType: 1
@@ -2209,6 +2306,18 @@ MonoBehaviour:
     ReverseOrder: 0
     alignment: -1
     Offset: 0
+    Cross:
+      Axis: 0
+      Spacing:
+        Raw: 0
+        Type: 0
+      SpacingMinMax:
+        Min: 0
+        Max: Infinity
+      AutoSpace: 0
+      ReverseOrder: 0
+      alignment: -1
+      ExpandToGrid: 0
   visibility:
     ZIndex: 0
     BlockType: 2
@@ -2514,6 +2623,18 @@ MonoBehaviour:
     ReverseOrder: 0
     alignment: 0
     Offset: 0
+    Cross:
+      Axis: 0
+      Spacing:
+        Raw: 0
+        Type: 0
+      SpacingMinMax:
+        Min: 0
+        Max: Infinity
+      AutoSpace: 0
+      ReverseOrder: 0
+      alignment: -1
+      ExpandToGrid: 0
   visibility:
     ZIndex: 0
     BlockType: 1
@@ -2843,6 +2964,18 @@ MonoBehaviour:
     ReverseOrder: 0
     alignment: -1
     Offset: 0
+    Cross:
+      Axis: 0
+      Spacing:
+        Raw: 0
+        Type: 0
+      SpacingMinMax:
+        Min: 0
+        Max: Infinity
+      AutoSpace: 0
+      ReverseOrder: 0
+      alignment: -1
+      ExpandToGrid: 0
   visibility:
     ZIndex: 0
     BlockType: 2
@@ -3147,6 +3280,18 @@ MonoBehaviour:
     ReverseOrder: 0
     alignment: -1
     Offset: 0
+    Cross:
+      Axis: 0
+      Spacing:
+        Raw: 0
+        Type: 0
+      SpacingMinMax:
+        Min: 0
+        Max: Infinity
+      AutoSpace: 0
+      ReverseOrder: 0
+      alignment: -1
+      ExpandToGrid: 0
   visibility:
     ZIndex: 0
     BlockType: 1
@@ -3427,6 +3572,18 @@ MonoBehaviour:
     ReverseOrder: 0
     alignment: -1
     Offset: 0
+    Cross:
+      Axis: 0
+      Spacing:
+        Raw: 0
+        Type: 0
+      SpacingMinMax:
+        Min: 0
+        Max: Infinity
+      AutoSpace: 0
+      ReverseOrder: 0
+      alignment: -1
+      ExpandToGrid: 0
   visibility:
     ZIndex: 0
     BlockType: 1

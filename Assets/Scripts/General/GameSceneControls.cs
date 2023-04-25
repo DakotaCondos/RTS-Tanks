@@ -13,6 +13,7 @@ public class GameSceneControls : MonoBehaviour
 
     public void MainMenu()
     {
+        RTSNetworkManager.singleton.StopClient();
         SceneManager.LoadScene("MainMenu");
     }
 }

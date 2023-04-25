@@ -40,9 +40,9 @@ public class RTSPlayer : NetworkBehaviour
         DebugCheckForDuplicateBuildings();
     }
 
-    public bool CanPlaceBuildingHere(BoxCollider buildingCollider, Vector3 point)
+    public bool CanPlaceBuildingHere(BoxCollider buildingCollider, Vector3 point, Quaternion rotation)
     {
-        if (Physics.CheckBox(point + buildingCollider.center, buildingCollider.size / 2f, Quaternion.identity, buildingLayerMask))
+        if (Physics.CheckBox(point + buildingCollider.center, buildingCollider.size / 2f, rotation, buildingLayerMask))
         {
             return false;
         }
@@ -109,7 +109,7 @@ public class RTSPlayer : NetworkBehaviour
         if (resources < buildingToPlace.Price) { return; }
 
         BoxCollider buildingCollider = buildingToPlace.GetComponent<BoxCollider>();
-        if (!CanPlaceBuildingHere(buildingCollider, point)) { return; }
+        if (!CanPlaceBuildingHere(buildingCollider, point, rotation)) { return; }
 
         bool inRange = false;
         foreach (var item in playerBuildings)
