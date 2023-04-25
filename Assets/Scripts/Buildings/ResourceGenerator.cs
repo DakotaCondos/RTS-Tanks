@@ -38,7 +38,7 @@ public class ResourceGenerator : NetworkBehaviour
         NetworkServer.Destroy(gameObject);
     }
 
-    [Server]
+    [ServerCallback]
     private void Update()
     {
         timer -= Time.deltaTime;

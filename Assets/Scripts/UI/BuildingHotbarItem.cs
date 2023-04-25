@@ -21,7 +21,6 @@ public class BuildingHotbarItem : MonoBehaviour
     public TextBlock BuildingName { get => buildingName; }
 
     [SerializeField] float rotationSpeed = 10f;
-    Renderer blueprintRenderer = null;
     [SerializeField] BoxCollider buildingCollider;
     [SerializeField] Color BlueprintBad;
     [SerializeField] Color BlueprintGood;
@@ -42,7 +41,7 @@ public class BuildingHotbarItem : MonoBehaviour
 
     private void Update()
     {
-        
+
 
         Placement();
         BlueprintRotation();
@@ -66,7 +65,7 @@ public class BuildingHotbarItem : MonoBehaviour
             RaycastHit hit;
             if (Physics.Raycast(mainCamera.ScreenPointToRay(Input.mousePosition), out hit, Mathf.Infinity, floorLayerMask))
             {
-                if (IsPlacementValid(hit))
+                if (IsPlacementValid())
                 {
                     PlaceBuilding(hit);
                 }
@@ -108,20 +107,6 @@ public class BuildingHotbarItem : MonoBehaviour
         RaycastHit hit;
         if (!Physics.Raycast(mainCamera.ScreenPointToRay(Input.mousePosition), out hit, Mathf.Infinity, floorLayerMask)) { return; }
         buildingPreviewInstance.transform.position = hit.point;
-        BlueprintColor(hit.point);
-
-    }
-
-    private void BlueprintColor(Vector3 point)
-    {
-        blueprintRenderer = buildingPreviewInstance.GetComponentInChildren<Renderer>();
-        if (blueprintRenderer == null)
-        {
-            print("blueprint renderer is null");
-        }
-        Color blueprintColor = rtsPlayer.CanPlaceBuildingHere(buildingCollider, point) ? BlueprintGood : BlueprintBad;
-
-        blueprintRenderer.material.color = blueprintColor;
     }
 
     private void PlaceBuilding(RaycastHit hit)
@@ -137,9 +122,13 @@ public class BuildingHotbarItem : MonoBehaviour
         buildingPreviewInstance = null;
     }
 
-    private bool IsPlacementValid(RaycastHit hit)
+    private bool IsPlacementValid()
     {
-        // TODO: Implement server placement validation logic here
-        return true;
+        if (!buildingPreviewInstance.TryGetComponent<Blueprint>(out Blueprint blueprint))
+        {
+            Debug.LogWarning("failed to get buildingPreviewInstance");
+            return false;
+        }
+        return !blueprint.IsColliding;
     }
 }

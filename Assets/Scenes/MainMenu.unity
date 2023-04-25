@@ -9284,7 +9284,7 @@ MonoBehaviour:
   lobbyPanel: {fileID: 131184138}
   ipJoin: {fileID: 259930398}
   panels: []
-  useSteam: 1
+  useSteam: 0
 --- !u!114 &1215337303
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14048,8 +14048,35 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 711960275750789098, guid: 834823851376ca941b23b555857f9b2e, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 711960275750789099, guid: 834823851376ca941b23b555857f9b2e, type: 3}
+      propertyPath: transport
+      value: 
+      objectReference: {fileID: 2048661809}
+    - target: {fileID: 7063020173322873502, guid: 834823851376ca941b23b555857f9b2e, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7356278302820047051, guid: 834823851376ca941b23b555857f9b2e, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 834823851376ca941b23b555857f9b2e, type: 3}
+--- !u!114 &2048661809 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 711960275750789098, guid: 834823851376ca941b23b555857f9b2e, type: 3}
+  m_PrefabInstance: {fileID: 2048661808}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7424c1070fad4ba2a7a96b02fbeb4bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &262722446842490760
 MonoBehaviour:
   m_ObjectHideFlags: 0

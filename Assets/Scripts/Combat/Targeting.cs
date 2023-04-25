@@ -21,7 +21,7 @@ public class Targeting : NetworkBehaviour
     [SerializeField] float rotationZ = 0;
 
     #region server
-    [Server]
+    [ServerCallback]
     private void Update()
     {
         PointTurretAtTarget();

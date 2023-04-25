@@ -1,0 +1,8 @@
+MainMenuUI
+-use steam
+
+NetworkManager
+-enable/disable SteamManager & Fizzy Steamworks
+-enable/disable Telepathy Transport
+-Select correct transport in RTSNetworkManager
+-Apply changes to prefab
