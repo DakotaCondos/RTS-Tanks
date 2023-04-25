@@ -11,6 +11,9 @@ GameObject:
   - component: {fileID: 711960275750789096}
   - component: {fileID: 711960275750789099}
   - component: {fileID: 711960275750789098}
+  - component: {fileID: 812810928}
+  - component: {fileID: 7356278302820047051}
+  - component: {fileID: 7063020173322873502}
   m_Layer: 0
   m_Name: NetworkManager
   m_TagString: Untagged
@@ -52,26 +55,38 @@ MonoBehaviour:
   sendRate: 30
   offlineScene: Assets/Scenes/MainMenu.unity
   onlineScene: 
-  transport: {fileID: 711960275750789098}
+  transport: {fileID: 7356278302820047051}
   networkAddress: localhost
-  maxConnections: 100
+  maxConnections: 4
   authenticator: {fileID: 0}
   playerPrefab: {fileID: 5289635517820159351, guid: 9f9c29b8fb0121349b10e8abfdee02cf, type: 3}
   autoCreatePlayer: 1
   playerSpawnMethod: 1
   spawnPrefabs:
   - {fileID: 9101848266096757683, guid: bae2c599b47acee4cb4697a7d95f0bd4, type: 3}
-  - {fileID: 7951930979197275896, guid: 07150e346374829428e956a3d8c582e9, type: 3}
+  - {fileID: 4677462153606422781, guid: 8b7d4fd9645c7fa4da684a8de998240e, type: 3}
   - {fileID: 6885517240279698945, guid: 0297f277d894fd4419d997dee9896802, type: 3}
   - {fileID: 3040010817085306747, guid: a745761ac849c5d4b9d2d20a5e3dd41f, type: 3}
   - {fileID: 1686848704802119478, guid: 1ce3772399e96b94ea32e93358f1f89f, type: 3}
+  - {fileID: 4677462153606422781, guid: 191fb4b4eebcb5449b00f930ae176aeb, type: 3}
+  - {fileID: 4677462153606422781, guid: 27838717e61906340a5075cb48c8c5a7, type: 3}
+  snapshotSettings:
+    bufferTimeMultiplier: 2
+    catchupNegativeThreshold: -1
+    catchupPositiveThreshold: 1
+    catchupSpeed: 0.019999999552965164
+    slowdownSpeed: 0.03999999910593033
+    driftEmaDuration: 1
+    dynamicAdjustment: 1
+    dynamicAdjustmentTolerance: 1
+    deliveryTimeEmaDuration: 2
   timeInterpolationGui: 0
-  unitBasePrefab: {fileID: 0}
+  unitBasePrefab: {fileID: 4677462153606422781, guid: 8b7d4fd9645c7fa4da684a8de998240e, type: 3}
   gameOverHandlerPrefab: {fileID: 1686848704802119478, guid: 1ce3772399e96b94ea32e93358f1f89f, type: 3}
-  player1: {r: 0, g: 0, b: 0, a: 0}
-  player2: {r: 0, g: 0, b: 0, a: 0}
-  player3: {r: 0, g: 0, b: 0, a: 0}
-  player4: {r: 0, g: 0, b: 0, a: 0}
+  player1: {r: 0, g: 0.5988023, b: 1, a: 0}
+  player2: {r: 1, g: 0.09356727, b: 0, a: 0}
+  player3: {r: 0, g: 1, b: 0.42405057, a: 0}
+  player4: {r: 1, g: 0.80088496, b: 0, a: 0}
 --- !u!114 &711960275750789098
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -79,7 +94,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 711960275750789076}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c7424c1070fad4ba2a7a96b02fbeb4bb, type: 3}
   m_Name: 
@@ -96,3 +111,45 @@ MonoBehaviour:
   clientMaxReceivesPerTick: 1000
   clientSendQueueLimit: 10000
   clientReceiveQueueLimit: 10000
+--- !u!114 &812810928
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 711960275750789076}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6442dc8070ceb41f094e44de0bf87274, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  offsetX: 0
+  offsetY: 0
+--- !u!114 &7356278302820047051
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 711960275750789076}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6e55fca1f4e4844593a3dd65a3ecb39, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Channels: 0200000001000000
+  Timeout: 25
+  AllowSteamRelay: 1
+  UseNextGenSteamNetworking: 1
+--- !u!114 &7063020173322873502
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 711960275750789076}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d089ce68eb8074a4e801314b84e89411, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
