@@ -80,6 +80,7 @@ public class JoinLobbyMenu : MonoBehaviour
         }
 
         startGameButton.SetActive(showStartButton && players.Count > 1);
+
         initialInfoCheckCompleted = true;
 
     }

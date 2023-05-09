@@ -21,9 +21,9 @@ public class CameraController : NetworkBehaviour
     public float rotationSpeed = 100f; // The speed at which the camera rotates
     public float zoomSpeed = 10f; // The speed at which the camera zooms
 
-    public float zoomDistance = 95f; // The initial distance between the camera and the focal point
+    public float zoomDistance = 0f; // The initial distance between the camera and the focal point
     public float minZoom = 0f;
-    public float maxZoom = 100f;
+    public float maxZoom = 250f;
     public float minFov = 10f;
     public float maxFov = 120f;
     public CinemachineVirtualCamera virtualCamera;
@@ -49,6 +49,7 @@ public class CameraController : NetworkBehaviour
         virtualCamera.LookAt = transform;
         virtualCamera.Follow = transform;
         mainCamera = Camera.main;
+
     }
 
     [ClientCallback]
@@ -73,7 +74,7 @@ public class CameraController : NetworkBehaviour
         {
             focalPointScreenCenter = hit.point;
             minimapBoundsInstance.transform.position = hit.point;
-            minimapBoundsUI.Size = new Length3((105 - zoomDistance) * boundsMultiplier, (105 - zoomDistance) * boundsMultiplier, 0);
+            minimapBoundsUI.Size = new Length3((maxZoom - zoomDistance) * boundsMultiplier, (maxZoom - zoomDistance) * boundsMultiplier, 0);
         }
 
     }

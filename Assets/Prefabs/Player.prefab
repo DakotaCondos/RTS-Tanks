@@ -144,14 +144,14 @@ MonoBehaviour:
   floorLayer:
     serializedVersion: 2
     m_Bits: 1024
-  focalPointMouse: {fileID: 0}
-  focalPointScreenCenter: {fileID: 0}
+  focalPointMouse: {x: 0, y: 0, z: 0}
+  focalPointScreenCenter: {x: 0, y: 0, z: 0}
   moveSpeed: 20
   rotationSpeed: 100
   zoomSpeed: 2
-  zoomDistance: 90
+  zoomDistance: 245
   minZoom: 0
-  maxZoom: 100
+  maxZoom: 250
   minFov: 10
   maxFov: 120
   virtualCamera: {fileID: 893602451154611086}
