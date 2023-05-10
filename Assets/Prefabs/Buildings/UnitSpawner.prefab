@@ -398,7 +398,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 306880154729112055, guid: ecbcf85939799f84a81b76b768effc86, type: 3}
       propertyPath: buildingName
-      value: DevBldg
+      value: Tank Factory
       objectReference: {fileID: 0}
     - target: {fileID: 306880154729112055, guid: ecbcf85939799f84a81b76b768effc86, type: 3}
       propertyPath: buildingPreview

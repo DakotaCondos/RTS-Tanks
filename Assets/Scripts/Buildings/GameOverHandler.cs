@@ -40,7 +40,7 @@ public class GameOverHandler : NetworkBehaviour
 
         int playerId = bases[0].connectionToClient.connectionId;
 
-        RpcGameOver($"Player {playerId}");
+        RpcGameOver($"Player {playerId + 1}");
         ServerOnGameOver?.Invoke();
     }
 
